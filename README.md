@@ -7,4 +7,30 @@ Provide UI components for creating references to the web.
 
 1. Add uiModule to app-ui
 1. Integrate the styles into styles.scss
-1. Invoke ```require('fontoxml-references-web').configure()``` in app.js
+
+## Example usage
+
+Use the web reference modal in an operation for example.
+
+```
+"web-xref-insert": {
+	"label": "Web reference",
+	"description": "Insert a reference to a web resource",
+	"steps": [
+		{
+			"type": "modal/WebReference",
+			"options": {
+				"controller": "WebReferenceModalController",
+				"templateUrl": "fontoxml-references-web/ui/web-reference-modal-template.html",
+				"windowClass": "modal-md"
+			}
+		},
+		{
+			"type": "editor-method/transformReferenceToPermanentId"
+		},
+		{
+			"type": "command/xref-insert"
+		}
+	]
+}
+```
