@@ -1,7 +1,6 @@
 .insert-reference
-
 	.modal-header
-		h3.modal-title
+		.modal-title
 			| Insert reference
 
 	.modal-body
@@ -12,27 +11,29 @@
 		.modal-body__section
 			form.form-horizontal(novalidate, name='insertUrlReferenceForm')
 
-				//- Url field
 				.form-group.has-feedback
 					label.control-label.col-sm-2
 						| Web address
+
 					.col-sm-10
 						.input-group(ng-class='{"has-success": insertUrlReferenceForm.url.$valid, "has-warning": insertUrlReferenceForm.url.$invalid}')
-							.input-group
-								span.input-group-btn
-									select.btn.btn-default.dropdown-toggle(ng-model="templateData.reference.protocol", ng-options="protocolOption for protocolOption in templateData.protocolOptions")
-								input.form-control.has-feedback(
-										name="url",
-										type="text",
-										ng-model='templateData.reference.target',
-										ng-blur="onBlur()",
-										ng-paste="onPaste()",
-										ng-pattern='templateData.urlPattern'
-									)
-								i.icon.form-control-feedback(
-									ng-class="{'icon-warning': insertUrlReferenceForm.url.$invalid, 'icon-check': insertUrlReferenceForm.url.$valid && insertUrlReferenceForm.url.$dirty && templateData.reference.target != ''}"
-								)
+							.input-group-btn
+								select.btn.btn-default.protocol-options(ng-model="templateData.reference.protocol", ng-options="protocolOption for protocolOption in templateData.protocolOptions")
+
+							input.form-control.has-feedback(
+								name="url",
+								type="text",
+								ng-model='templateData.reference.target',
+								ng-blur="onBlur()",
+								ng-paste="onPaste()",
+								ng-pattern='templateData.urlPattern')
+
+							i.icon.form-control-feedback(
+								ng-class="{'icon-warning': insertUrlReferenceForm.url.$invalid, 'icon-check': insertUrlReferenceForm.url.$valid && insertUrlReferenceForm.url.$dirty && templateData.reference.target != ''}")
 
 	.modal-footer
-		button.btn.btn-default.pull-left(ng-click='cancel()') Cancel
-		button.btn.btn-primary(ng-click='apply()', ng-disabled='insertUrlReferenceForm.$invalid') Insert
+		button.btn.btn-default.pull-left(ng-click='cancel()')
+			| Cancel
+
+		button.btn.btn-primary(ng-click='apply()', ng-disabled='insertUrlReferenceForm.$invalid')
+			| Insert
