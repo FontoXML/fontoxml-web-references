@@ -7,7 +7,7 @@ define([
 
 	return /* @ngInject */ function WebReferencePopoverController ($scope) {
 		$scope.editReference = function () {
-			editor.executeOperation('web-reference-edit', {
+			editor.executeOperation('xref-web-edit', {
 				nodeId: $scope.templateData.nodeId,
 				target: $scope.templateData.reference.target
 			});

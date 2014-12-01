@@ -13,9 +13,10 @@ Provide UI components for creating references to the web.
 Use the web reference modal in an operation for example.
 
 ```
-"web-xref-insert": {
+"xref-web-insert": {
 	"label": "Web reference",
 	"description": "Insert a reference to a web resource",
+	"icon": "link",
 	"steps": [
 		{
 			"type": "modal/WebReference",
