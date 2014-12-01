@@ -4,12 +4,14 @@ define([
 	'fontoxml-references',
 
 	'./ui/WebReferenceModalController',
+	'./ui/WebReferencePopoverController'
 ], function (
 	angular,
 
 	references,
 
-	WebReferenceModalController
+	WebReferenceModalController,
+	WebReferencePopoverController
 	) {
 	'use strict';
 
@@ -20,6 +22,7 @@ define([
 	var module = angular.module('fontoxml-references-web', []);
 
 	module.controller('WebReferenceModalController', WebReferenceModalController);
+	module.controller('WebReferencePopoverController', WebReferencePopoverController);
 
 	return module.name;
 });

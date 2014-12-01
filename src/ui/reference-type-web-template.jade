@@ -1,3 +1,5 @@
-| Web reference:
-strong
-	a(href="{{templateData.reference.target}}", target="_blank") {{templateData.reference.target}}
+div(ng-controller="WebReferencePopoverController")
+	| Web reference:
+	strong
+		a(href="{{templateData.reference.target}}", target="_blank") {{templateData.reference.target}}
+		button.btn(ng-click="editReference()") Edit
