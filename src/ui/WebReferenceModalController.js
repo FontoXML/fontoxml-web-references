@@ -70,12 +70,20 @@ define([
 				target: $scope.templateData.reference.protocol + $scope.templateData.reference.target,
 				type: 'web'
 			});
-
+			
 			$modalInstance.close(operationData);
 		};
 
 		$scope.cancel = function () {
 			$modalInstance.dismiss();
 		};
+
+		// Check if a reference if being updated
+		if (operationData && operationData.target) {
+			$scope.templateData.reference = {
+				target: operationData.target
+			};
+			processInput();
+		}
 	};
 });
