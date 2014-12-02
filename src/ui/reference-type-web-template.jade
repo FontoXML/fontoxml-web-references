@@ -1,5 +1,10 @@
-div(ng-controller="WebReferencePopoverController")
-	| Web reference:
-	strong
-		a(href="{{templateData.reference.target}}", target="_blank") {{templateData.reference.target}}
-		button.btn(ng-click="editReference()") Edit
+div(ng-controller="WebReferencePopoverController", ui-tooltips-attachment="north")
+	| Web reference to&#32;
+	a.reference-link(href="{{templateData.reference.target}}",
+		target="_blank",
+		ui-tooltip-content="Click to open this hyperlink in a new window.")
+		| {{templateData.reference.target}}
+
+	div(button-type="primary")
+		button.button(ng-click="editReference()")
+			| Edit
