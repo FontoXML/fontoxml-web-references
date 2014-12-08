@@ -1,5 +1,5 @@
-div
-	.popover__body(ng-controller="WebReferencePopoverController", ui-tooltips-attachment="north")
+div(ng-controller="WebReferencePopoverController")
+	.popover__body(ui-tooltips-attachment="north")
 		| Web reference to
 		br
 		a.reference-link(href="{{templateData.reference.target}}",
