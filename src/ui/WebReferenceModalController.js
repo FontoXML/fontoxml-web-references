@@ -68,7 +68,7 @@ define([
 			operationData = Object.assign({}, operationData, {
 				metadata: {},
 				target: $scope.templateData.reference.protocol + $scope.templateData.reference.target,
-				type: 'external'
+				type: 'web'
 			});
 			
 			$modalInstance.close(operationData);
