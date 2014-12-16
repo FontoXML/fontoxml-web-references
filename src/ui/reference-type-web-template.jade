@@ -1,5 +1,5 @@
 div(ng-controller="WebReferencePopoverController")
-	.popover__body(ui-tooltips-attachment="north")
+	ui-popover-body(ui-tooltips-attachment="north")
 		| Web reference to
 		br
 		a.reference-link(href="{{templateData.reference.target}}",
@@ -7,6 +7,6 @@ div(ng-controller="WebReferencePopoverController")
 			ui-tooltip-content="Click to open this hyperlink in a new window.")
 			| {{templateData.reference.target}}
 
-	.popover__footer(button-type="primary")
+	ui-popover-footer(button-type="primary")
 		button.btn.btn-primary(ng-click="editReference()")
 			| Edit
