@@ -15,9 +15,12 @@
 						| Web address
 
 					.col-sm-10
-						.input-group(ng-class="{'has-success': insertUrlReferenceForm.url.$valid, 'has-warning': insertUrlReferenceForm.url.$invalid}")
+						.input-group(ng-class="{'has-success': insertUrlReferenceForm.url.$valid,\
+						                        'has-warning': insertUrlReferenceForm.url.$invalid}")
 							.input-group-btn
-								select.protocol-options(ng-model="templateData.reference.protocol", ng-options="protocolOption for protocolOption in templateData.protocolOptions")
+								select.protocol-options(
+									ng-model="templateData.reference.protocol",
+									ng-options="protocolOption for protocolOption in templateData.protocolOptions")
 
 							input.form-control.has-feedback(
 								name="url",
@@ -28,18 +31,17 @@
 								ng-pattern="templateData.urlPattern")
 
 							i.icon.form-control-feedback(
-								ng-class="{'icon-warning': insertUrlReferenceForm.url.$invalid, 'icon-check': insertUrlReferenceForm.url.$valid && insertUrlReferenceForm.url.$dirty && templateData.reference.target != ''}")
+								ng-class="{'icon-warning': insertUrlReferenceForm.url.$invalid,\
+								           'icon-check': insertUrlReferenceForm.url.$valid && insertUrlReferenceForm.url.$dirty && templateData.reference.target != ''}")
 
 	ui-modal-footer
 		ui-button.pull-left(
 			type="default",
 			label="Cancel",
-			ng-click="cancel()"
-			)
+			ng-click="cancel()")
 
 		ui-button(
 			type="primary",
 			label="Insert",
 			ng-click="apply()",
-			ng-disabled="insertUrlReferenceForm.$invalid"
-			)
+			enabled="{{insertUrlReferenceForm.$valid}}")
