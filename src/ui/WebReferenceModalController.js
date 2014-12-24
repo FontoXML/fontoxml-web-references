@@ -3,10 +3,12 @@ define([
 	) {
 	'use strict';
 
-	return /* @ngInject */ function WebReferenceModalController ($scope, $modalInstance, operationData, bufferDigest) {
+	return /* @ngInject */ function WebReferenceModalController ($scope, $modalInstance, operationData) {
 		var pasteMutation = false;
 
 		$scope.templateData = {};
+
+		$scope.templateData.title = operationData.modalTitle;
 
 		// Does not allow spaces
 		// Does not allow IPv6 addresses
@@ -20,27 +22,14 @@ define([
 			'(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
 			'(\\#[-a-z\\d_]*)?$', 'i');
 
-		$scope.templateData.protocolOptions = [
-			'http://',
-			'https://'
-		];
-
 		$scope.templateData.reference = {
-			target: '',
-			protocol: $scope.templateData.protocolOptions[0]
+			target: ''
 		};
 
 		function processInput () {
 			if (!$scope.templateData.reference.target) {
 				return;
 			}
-
-			$scope.templateData.protocolOptions.forEach(function (protocolPrefix) {
-				if ($scope.templateData.reference.target.indexOf(protocolPrefix) === 0) {
-					$scope.templateData.reference.protocol = protocolPrefix;
-					$scope.templateData.reference.target = $scope.templateData.reference.target.substr(protocolPrefix.length);
-				}
-			});
 		}
 
 		// The first mutation after a paste should be processed
@@ -67,10 +56,10 @@ define([
 
 			operationData = Object.assign({}, operationData, {
 				metadata: {},
-				target: $scope.templateData.reference.protocol + $scope.templateData.reference.target,
+				target: $scope.templateData.reference.target,
 				type: 'web'
 			});
-			
+
 			$modalInstance.close(operationData);
 		};
 

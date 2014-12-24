@@ -1,12 +1,12 @@
 .insert-reference
 	ui-modal-header(
-		title="Insert hyperlink"
+		title="{{templateData.title}}",
 		icon="globe")
 
 	ui-modal-body
 		.modal-body__section
 			.alert
-				| Enter the web address for this hyperlink.
+				| Enter the web address for this link.
 
 		.modal-body__section
 			form.form-horizontal(novalidate, name="insertUrlReferenceForm")
@@ -15,24 +15,18 @@
 						| Web address
 
 					.col-sm-10
-						.input-group(ng-class="{'has-success': insertUrlReferenceForm.url.$valid,\
-						                        'has-warning': insertUrlReferenceForm.url.$invalid}")
-							.input-group-btn
-								select.protocol-options(
-									ng-model="templateData.reference.protocol",
-									ng-options="protocolOption for protocolOption in templateData.protocolOptions")
+						input.form-control.has-feedback(
+							name="url",
+							type="text",
+							ng-model="templateData.reference.target",
+							ng-keyup="$event.keyCode === 13 && insertUrlReferenceForm.$valid && apply()",
+							ng-blur="onBlur()",
+							ng-paste="onPaste()",
+							ng-pattern="templateData.urlPattern")
 
-							input.form-control.has-feedback(
-								name="url",
-								type="text",
-								ng-model="templateData.reference.target",
-								ng-blur="onBlur()",
-								ng-paste="onPaste()",
-								ng-pattern="templateData.urlPattern")
-
-							i.icon.form-control-feedback(
-								ng-class="{'icon-warning': insertUrlReferenceForm.url.$invalid,\
-								           'icon-check': insertUrlReferenceForm.url.$valid && insertUrlReferenceForm.url.$dirty && templateData.reference.target != ''}")
+						i.icon.form-control-feedback(
+							ng-class="{'icon-warning': insertUrlReferenceForm.url.$invalid, \
+								'icon-check': insertUrlReferenceForm.url.$valid && insertUrlReferenceForm.url.$dirty && templateData.reference.target != ''}")
 
 	ui-modal-footer
 		ui-button.pull-left(

@@ -1,11 +1,11 @@
 div(ng-controller="WebReferencePopoverController")
 	ui-popover-body(ui-tooltips-attachment="north")
-		| Web reference to
+		| Link to
 
 		a.reference-link(
 			href="{{templateData.reference.target}}",
 			target="_blank",
-			ui-tooltip-content="Click to open this hyperlink in a new window.")
+			ui-tooltip-content="Click to open this link in a new window")
 			| {{templateData.reference.target}}
 
 	ui-popover-footer
