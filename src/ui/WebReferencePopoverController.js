@@ -9,7 +9,8 @@ define([
 		$scope.editReference = function () {
 			editor.executeOperation('xref-web-edit', {
 				nodeId: $scope.templateData.nodeId,
-				target: $scope.templateData.reference.target
+				target: $scope.templateData.reference.target,
+				permanentId: $scope.templateData.reference.permanentId
 			});
 		};
 	};

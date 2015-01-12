@@ -57,7 +57,8 @@ define([
 			operationData = Object.assign({}, operationData, {
 				metadata: {},
 				target: $scope.templateData.reference.target,
-				type: 'web'
+				type: 'web',
+				originalPermanentId: operationData.permanentId
 			});
 
 			$modalInstance.close(operationData);

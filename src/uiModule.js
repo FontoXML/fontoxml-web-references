@@ -2,6 +2,7 @@ define([
 	'angular',
 
 	'fontoxml-references',
+	'fontoxml-references/uiModule',
 
 	'./ui/WebReferenceModalController',
 	'./ui/WebReferencePopoverController'
@@ -9,6 +10,7 @@ define([
 	angular,
 
 	references,
+	referencesUiModule,
 
 	WebReferenceModalController,
 	WebReferencePopoverController
@@ -18,8 +20,9 @@ define([
 	// Register the template for web references
 	references.referencesPopoverSectionService.setTemplate('web', 'fontoxml-references-web/ui/reference-type-web-template.html');
 
-
-	var module = angular.module('fontoxml-references-web', []);
+	var module = angular.module('fontoxml-references-web', [
+			referencesUiModule
+		]);
 
 	module.controller('WebReferenceModalController', WebReferenceModalController);
 	module.controller('WebReferencePopoverController', WebReferencePopoverController);
