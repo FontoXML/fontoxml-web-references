@@ -8,6 +8,9 @@ div(ng-controller="WebReferencePopoverController")
 			ui-tooltip-content="Click to open this link in a new window")
 			| {{templateData.reference.target}}
 
+		p(ng-if="templateData.reference.description")
+			| {{templateData.reference.description}}
+
 		.alert.alert--warning(ng-if="templateData.reference.metadata.suspiciousReason")
 			| {{templateData.reference.metadata.suspiciousReason}}
 
