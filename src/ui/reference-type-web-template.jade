@@ -8,7 +8,15 @@ div(ng-controller="WebReferencePopoverController")
 			ui-tooltip-content="Click to open this link in a new window")
 			| {{templateData.reference.target}}
 
+		.alert.alert--warning(ng-if="templateData.reference.metadata.suspiciousReason")
+			| {{templateData.reference.metadata.suspiciousReason}}
+
 	ui-popover-footer
+		ui-button(
+			ng-if="templateData.reference.metadata.isSuspicious",
+			type="secondary",
+			label="Mark as valid",
+			ng-click="markReferenceAsValid()")
 		ui-button(
 			type="primary",
 			label="Edit",

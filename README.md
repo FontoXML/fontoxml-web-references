@@ -33,5 +33,44 @@ Use the web reference modal in an operation for example.
 			"type": "command/xref-insert"
 		}
 	]
+},
+"xref-web-edit": {
+	"label": "Edit web reference",
+	"description": "Edit this web reference",
+	"icon": "link",
+	"flags": [
+		"exclude-from-operations-list"
+	],
+	"steps": [
+		{
+			"type": "modal/WebReference",
+			"data": {
+				"modalTitle": "Edit this web reference"
+			},
+			"options": {
+				"controller": "WebReferenceModalController",
+				"templateUrl": "fontoxml-references-web/ui/web-reference-modal-template.html",
+				"windowClass": "modal-md"
+			}
+		},
+		{
+			"type": "editor-method/transformReferenceToPermanentId"
+		},
+		{
+			"type": "command/set-attributes"
+		}
+	]
+},
+"xref-web-mark-as-valid": {
+	"label": "Mark as valid",
+	"description": "Mark this web reference as valid",
+	"flags": [
+		"exclude-from-operations-list"
+	],
+	"steps": [
+		{
+			"type": "editor-method/markReferenceAsValid"
+		}
+	]
 }
 ```
