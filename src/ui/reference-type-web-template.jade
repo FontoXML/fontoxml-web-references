@@ -19,8 +19,9 @@ div(ng-controller="WebReferencePopoverController")
 			ng-if="templateData.reference.metadata.isSuspicious",
 			type="secondary",
 			label="Mark as valid",
-			ng-click="markReferenceAsValid()")
+			click="markReferenceAsValid()")
+
 		ui-button(
 			type="primary",
 			label="Edit",
-			ng-click="editReference()")
+			click="editReference()")

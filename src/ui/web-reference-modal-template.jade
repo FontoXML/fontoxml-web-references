@@ -1,4 +1,6 @@
-.insert-reference
+.insert-reference(
+	ng-keyup="$event.keyCode === 13 && insertUrlReferenceForm.$valid && apply()")
+
 	ui-modal-header(
 		title="{{templateData.title}}",
 		icon="globe")
@@ -19,10 +21,10 @@
 							name="url",
 							type="text",
 							ng-model="templateData.reference.target",
-							ng-keyup="$event.keyCode === 13 && insertUrlReferenceForm.$valid && apply()",
 							ng-blur="onBlur()",
 							ng-paste="onPaste()",
-							ng-pattern="templateData.urlPattern")
+							ng-pattern="templateData.urlPattern",
+							required)
 
 						i.icon.form-control-feedback(
 							ng-class="{'icon-warning': insertUrlReferenceForm.url.$invalid, \
@@ -32,10 +34,10 @@
 		ui-button.pull-left(
 			type="default",
 			label="Cancel",
-			ng-click="cancel()")
+			click="cancel()")
 
 		ui-button(
 			type="primary",
 			label="Insert",
-			ng-click="apply()",
+			click="apply()",
 			enabled="{{insertUrlReferenceForm.$valid}}")
