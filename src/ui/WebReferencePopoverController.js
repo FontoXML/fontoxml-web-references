@@ -7,6 +7,7 @@ define([
 
 	return /* @ngInject */ function WebReferencePopoverController ($scope) {
 		$scope.editReference = function () {
+			// TODO: we need a better way to determine the operation to execute
 			editor.executeOperation('xref-web-edit', {
 				nodeId: $scope.templateData.nodeId,
 				target: $scope.templateData.reference.target,
@@ -14,6 +15,7 @@ define([
 			});
 		};
 
+		//TODO: This is not specific to web references and should be moved to fontoxml-references
 		$scope.markReferenceAsValid = function () {
 			editor.executeOperation('xref-web-mark-as-valid', {
 				nodeId: $scope.templateData.nodeId,

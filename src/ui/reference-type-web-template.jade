@@ -11,10 +11,12 @@ div(ng-controller="WebReferencePopoverController")
 		p(ng-if="templateData.reference.description")
 			| {{templateData.reference.description}}
 
+		//-- TODO: This is not specific to web references and should be moved to fontoxml-references
 		.alert.alert--warning(ng-if="templateData.reference.metadata.suspiciousReason")
 			| {{templateData.reference.metadata.suspiciousReason}}
 
 	ui-popover-footer
+		//-- TODO: This is not specific to web references and should be moved to fontoxml-references
 		ui-button(
 			ng-if="templateData.reference.metadata.isSuspicious",
 			type="secondary",
