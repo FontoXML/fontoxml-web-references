@@ -3,27 +3,32 @@ div(ng-controller="WebReferencePopoverController")
 		| Link to
 
 		a.reference-link(
-			href="{{templateData.reference.target}}",
-			target="_blank",
+			href="{{templateData.reference.target}}"
+			target="_blank"
 			ui-tooltip-content="Click to open this link in a new window")
 			| {{templateData.reference.target}}
 
 		p(ng-if="templateData.reference.metadata.description")
 			| {{templateData.reference.metadata.description}}
 
-		//-- TODO: This is not specific to web references and should be moved to fontoxml-references
+		//- TODO: This is not specific to web references and should be moved to fontoxml-references
 		.alert.alert--warning(ng-if="templateData.reference.metadata.suspiciousReason")
 			| {{templateData.reference.metadata.suspiciousReason}}
 
-	ui-popover-footer
-		//-- TODO: This is not specific to web references and should be moved to fontoxml-references
-		ui-button(
-			ng-if="templateData.reference.metadata.isSuspicious",
-			type="secondary",
-			label="Mark as valid",
-			click="markReferenceAsValid()")
+	//- TODO: This is not specific to web references and should be moved to fontoxml-references
+	ui-popover-footer(
+		is-ui-region-root-row
+		horizontal-alignment="right"
+		ui-tooltips-attachment="south")
+		ui-region-column(size="fixed")
+			ui-region-content
+				ui-button(
+					ng-if="templateData.reference.metadata.isSuspicious"
+					type="secondary"
+					label="Mark as valid"
+					click="markReferenceAsValid()")
 
-		ui-button(
-			type="primary",
-			label="Edit",
-			click="editReference()")
+				ui-button(
+					type="primary"
+					label="Edit"
+					click="editReference()")
