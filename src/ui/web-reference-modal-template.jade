@@ -1,8 +1,6 @@
-.insert-reference(
-	ng-keyup="$event.keyCode === 13 && insertUrlReferenceForm.$valid && apply()")
-
+ui-modal(ng-keyup="$event.keyCode === 13 && insertUrlReferenceForm.$valid && apply()")
 	ui-modal-header(
-		title="{{templateData.title}}",
+		title="{{templateData.title}}"
 		icon="globe")
 
 	ui-modal-body
@@ -18,26 +16,29 @@
 
 					.col-sm-10
 						input.form-control.has-feedback(
-							name="url",
-							type="text",
-							ng-model="templateData.reference.target",
-							ng-blur="onBlur()",
-							ng-paste="onPaste()",
-							ng-pattern="templateData.urlPattern",
+							name="url"
+							type="text"
+							ng-model="templateData.reference.target"
+							ng-blur="onBlur()"
+							ng-paste="onPaste()"
+							ng-pattern="templateData.urlPattern"
 							required)
 
-						i.icon.form-control-feedback(
+						.icon.form-control-feedback(
 							ng-class="{'icon-warning': insertUrlReferenceForm.url.$invalid, \
-								'icon-check': insertUrlReferenceForm.url.$valid && insertUrlReferenceForm.url.$dirty && templateData.reference.target != ''}")
+							           'icon-check': insertUrlReferenceForm.url.$valid && insertUrlReferenceForm.url.$dirty && templateData.reference.target != ''}")
 
 	ui-modal-footer
-		ui-button.pull-left(
-			type="default",
-			label="Cancel",
-			click="cancel()")
+		ui-button-bar
+			ui-button-bar-region
+				ui-button(
+					type="default"
+					label="Cancel"
+					click="cancel()")
 
-		ui-button(
-			type="primary",
-			label="Insert",
-			click="apply()",
-			enabled="{{insertUrlReferenceForm.$valid}}")
+			ui-button-bar-region
+				ui-button(
+					type="primary"
+					label="Insert"
+					click="apply()"
+					enabled="{{insertUrlReferenceForm.$valid}}")
