@@ -16,12 +16,9 @@ div(ng-controller="WebReferencePopoverController")
 			| {{templateData.reference.metadata.suspiciousReason}}
 
 	//- TODO: This is not specific to web references and should be moved to fontoxml-references
-	ui-popover-footer(
-		is-ui-region-root-row
-		horizontal-alignment="right"
-		ui-tooltips-attachment="south")
-		ui-region-column(size="fixed")
-			ui-region-content
+	ui-popover-footer
+		ui-button-bar
+			ui-button-bar-region
 				ui-button(
 					ng-if="templateData.reference.metadata.isSuspicious"
 					type="secondary"
