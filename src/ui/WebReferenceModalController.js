@@ -55,10 +55,12 @@ define([
 			processInput();
 
 			operationData = Object.assign({}, operationData, {
-				metadata: {},
-				target: $scope.templateData.reference.target,
-				type: 'web',
-				originalPermanentId: operationData.permanentId
+				reference: {
+					metadata: {},
+					target: $scope.templateData.reference.target,
+					type: 'web',
+					originalPermanentId: operationData.permanentId
+				}
 			});
 
 			$modalInstance.close(operationData);
