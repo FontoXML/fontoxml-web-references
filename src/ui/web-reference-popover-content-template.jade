@@ -1,0 +1,12 @@
+div(ng-controller="WebReferencePopoverController")
+	| Link to
+
+	a.reference-link(
+		href="{{templateData.reference.target}}"
+		target="_blank"
+		ui-tooltip-content="Click to open this link in a new window"
+		ng-click="templateData.hidePopover()")
+		| {{templateData.reference.target}}
+
+	p(ng-if="templateData.reference.metadata.description")
+		| {{templateData.reference.metadata.description}}
