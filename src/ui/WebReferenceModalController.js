@@ -6,9 +6,10 @@ define([
 	return /* @ngInject */ function WebReferenceModalController ($scope, $modalInstance, operationData) {
 		var pasteMutation = false;
 
-		$scope.templateData = {};
-
-		$scope.templateData.title = operationData.modalTitle;
+		$scope.templateData = {
+			title: operationData.modalTitle,
+			primaryButtonLabel: operationData.primaryButtonLabel || "Insert"
+		};
 
 		// Does not allow spaces
 		// Does not allow IPv6 addresses

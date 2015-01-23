@@ -39,6 +39,6 @@ ui-modal(ng-keyup="$event.keyCode === 13 && insertUrlReferenceForm.$valid && app
 			ui-button-bar-region
 				ui-button(
 					type="primary"
-					label="Insert"
+					label="{{templateData.primaryButtonLabel}}"
 					click="apply()"
 					enabled="{{insertUrlReferenceForm.$valid}}")
