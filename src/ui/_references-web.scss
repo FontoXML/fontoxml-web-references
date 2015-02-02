@@ -1,14 +1,3 @@
 /**
- * Web references
+ * FontoXML > Web references > Web reference
  */
-
-
-/* Add an external link icon to the link in the popover */
-.reference-link {
-	display: block;
-
-	&::after {
-		@include fontawesome-icon($fa-var-external-link-square);
-		margin-left: $padding-tiny;
-	}
-}
