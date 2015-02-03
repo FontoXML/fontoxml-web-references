@@ -11,6 +11,7 @@ define([
 			primaryButtonLabel: operationData.primaryButtonLabel || "Insert"
 		};
 
+		// Allows URLs without a protocol, http or https
 		// Does not allow spaces
 		// Does not allow IPv6 addresses
 		// Does not allow hostnames (lacking TLD)
@@ -27,6 +28,7 @@ define([
 			target: ''
 		};
 
+		// @developerquestion: what does this do exactly? ~ wybe, 3 feb '15
 		function processInput () {
 			if (!$scope.templateData.reference.target) {
 				return;
@@ -55,10 +57,18 @@ define([
 			// Fallback for when the user or user agent somehow doesn't trigger a blur event when submitting
 			processInput();
 
+			var target = $scope.templateData.reference.target;
+
+			if (target.indexOf('://') < 0) {
+				// the urlPattern does not allow for URLs starting with just "//", so if there is no "://" in the target
+				// we can assume the link has no protocol yet, and would erronously behave like a relative URL.
+				target = 'http://' + target;
+			}
+
 			operationData = Object.assign({}, operationData, {
 				reference: {
 					metadata: {},
-					target: $scope.templateData.reference.target,
+					target: target,
 					type: 'web',
 					originalPermanentId: operationData.permanentId
 				}
