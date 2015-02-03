@@ -1,5 +1,7 @@
 define([
+	'editor'
 ], function (
+	editor
 	) {
 	'use strict';
 
@@ -7,6 +9,7 @@ define([
 		var pasteMutation = false;
 
 		$scope.templateData = {
+			busy: false,
 			title: operationData.modalTitle,
 			primaryButtonLabel: operationData.primaryButtonLabel || "Insert"
 		};
@@ -74,7 +77,21 @@ define([
 				}
 			});
 
-			$modalInstance.close(operationData);
+			if (operationData.operationBeforeClose) {
+				// If the "operationBeforeClose" parameter is set, this operation will have to execute and finish first, before closing
+				// this modal. The primary use case for this is resolving the permanentId for given URL. The modal is kept open during
+				// this time to provide user feedback, and to prevent the cursor position to change to something with a different
+				// content model.
+				$scope.templateData.busy = true;
+				editor.executeOperation(operationData.operationBeforeClose, operationData).then(function (newOperationData) {
+					$modalInstance.close(newOperationData);
+				}).catch(function (error) {
+					console.error(error);
+					$modalInstance.dismiss();
+				});
+			} else {
+				$modalInstance.close(operationData);
+			}
 		};
 
 		$scope.cancel = function () {
