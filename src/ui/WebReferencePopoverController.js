@@ -7,7 +7,7 @@ define([
 	return /* @ngInject */ function WebReferencePopoverController ($scope) {
 		$scope.templateData.editReference = function () {
 			editor.executeOperation('xref-web-edit', {
-				nodeId: $scope.templateData.nodeId,
+				contextNodeId: $scope.templateData.nodeId,
 				target: $scope.templateData.reference.target,
 				permanentId: $scope.templateData.reference.permanentId
 			});
@@ -16,3 +16,4 @@ define([
 		};
 	};
 });
+
