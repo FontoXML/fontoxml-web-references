@@ -10,8 +10,7 @@ define([
 
 		$scope.templateData = {
 			busy: false,
-			title: operationData.modalTitle,
-			primaryButtonLabel: operationData.primaryButtonLabel || "Insert"
+			operationData: operationData
 		};
 
 		// Allows URLs without a protocol, http or https

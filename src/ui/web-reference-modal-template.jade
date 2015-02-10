@@ -1,6 +1,7 @@
 ui-modal(ng-keyup="$event.keyCode === 13 && insertUrlReferenceForm.$valid && apply()")
 	ui-modal-header(
-		title="{{templateData.title}}"
+		title="{{templateData.operationData.modalTitle}}"
+		subtitle="{{templateData.operationData.modalSubtitle || ''}}"
 		icon="globe")
 
 	ui-modal-body
@@ -53,6 +54,6 @@ ui-modal(ng-keyup="$event.keyCode === 13 && insertUrlReferenceForm.$valid && app
 			ui-button-bar-region(ng-if='!templateData.busy')
 				ui-button(
 					type="primary"
-					label="{{templateData.primaryButtonLabel}}"
+					label="{{templateData.operationData.modalPrimaryButtonLabel || 'Insert'}}"
 					click="apply()"
 					enabled="{{insertUrlReferenceForm.$valid}}")
