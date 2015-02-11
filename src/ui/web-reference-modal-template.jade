@@ -10,14 +10,18 @@ ui-modal(
 		.alert
 			| Enter the web address for this link.
 
-		ui-region-root-column.form-horizontal(novalidate, name="insertUrlReferenceForm")
-			ui-region-row.has-feedback
+		form.form-horizontal(novalidate name="insertUrlReferenceForm")
+			ui-region-root-row
 				ui-region-column(size="fixed")
 					label.control-label(for="web-reference-modal--url")
 						| Web address
 
-				ui-region-column
-					input.form-control.has-feedback(
+				ui-region-column.has-feedback(
+					ng-class="{ \
+						'has-success': insertUrlReferenceForm.url.$valid,\
+						'has-warning': insertUrlReferenceForm.url.$invalid \
+					}")
+					input.form-control(
 						id="web-reference-modal--url"
 						name="url"
 						type="text"
@@ -39,12 +43,12 @@ ui-modal(
 				ui-button(
 					type="default"
 					label="Cancel"
-					click="cancel()",
+					click="cancel()"
 					enabled="{{!templateData.busy}}"
 				)
 
-			// @NOTICE: This code should be removed as soon as there is a mechanism to give ui-buttons a "busy" state of
-			//          some sort. See also userstory FONTOXML-661. Also the ng-if for the next button may be deleted then.
+			//- @NOTICE: This code should be removed as soon as there is a mechanism to give ui-buttons a "busy" state of
+			//-          some sort. See also userstory FONTOXML-661. Also the ng-if for the next button may be deleted then.
 			ui-button-bar-region(ng-if='templateData.busy')
 				span Please wait while your link is being resolved
 				ui-button(
@@ -53,7 +57,7 @@ ui-modal(
 					label="{{templateData.primaryButtonLabel}}"
 					click="apply()"
 					enabled="{{false}}")
-			// End of temporary code
+			//- End of temporary code
 
 			ui-button-bar-region(ng-if='!templateData.busy')
 				ui-button(
