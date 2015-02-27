@@ -5,7 +5,7 @@ define([
 	'fontoxml-references/uiModule',
 
 	'./ui/WebReferenceModalController',
-	'./ui/WebReferencePopoverController'
+	'./ui/createUiWebReferencePopoverDirective'
 ], function (
 	angular,
 
@@ -13,21 +13,19 @@ define([
 	referencesUiModule,
 
 	WebReferenceModalController,
-	WebReferencePopoverController
-	) {
+	createUiWebReferencePopoverDirective
+) {
 	'use strict';
 
-	var module = angular.module('fontoxml-references-web', [
-			referencesUiModule
-		]);
+	var module = angular.module(
+			'fontoxml-references-web',
+			[
+				referencesUiModule
+			]);
 
 	module.controller('WebReferenceModalController', WebReferenceModalController);
-	module.controller('WebReferencePopoverController', WebReferencePopoverController);
 
-	// Register the template for web references
-	references.referencePopoverContentService.setContentTemplateForReferenceType(
-		'web',
-		'fontoxml-references-web/ui/web-reference-popover-content-template.html');
+	module.directive('uiWebReferencePopover', createUiWebReferencePopoverDirective);
 
 	return module.name;
 });

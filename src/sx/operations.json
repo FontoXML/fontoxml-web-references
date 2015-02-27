@@ -1,0 +1,42 @@
+{
+	"reference-web-insert-modal": {
+		"flags": [
+			"exclude-from-operations-list"
+		],
+		"steps": {
+			"type": "modal/WebReference",
+			"options": {
+				"controller": "WebReferenceModalController",
+				"templateUrl": "fontoxml-references-web/ui/web-reference-modal-template.html",
+				"windowClass": "modal-md"
+			},
+			"data": {
+				"modalTitle": "Insert hyperlink",
+				"modalSubtitle": "Refer to a web address",
+
+				"referenceTypeName": "web"
+			}
+		}
+	},
+	"reference-web-edit-modal": {
+		"flags": [
+			"exclude-from-operations-list"
+		],
+		"steps": {
+			"type": "modal/WebReference",
+			"options": {
+				"controller": "WebReferenceModalController",
+				"templateUrl": "fontoxml-references-web/ui/web-reference-modal-template.html",
+				"windowClass": "modal-md"
+			},
+			"data": {
+				"modalTitle": "Edit hyperlink",
+				"modalSubtitle": "Refer to a web address",
+				"modalPrimaryButtonLabel": "Save",
+
+				"contextNodeId": "{{contextNodeId}}",
+				"referenceTypeName": "web"
+			}
+		}
+	}
+}

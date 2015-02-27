@@ -1,0 +1,12 @@
+div
+	div Hyperlink to:&#32;
+
+	a.reference-link(
+		href="{{uiWebReferencePopover.uiReferencePopover.reference.target}}"
+		target="_blank"
+		ui-tooltip-content="Click to open this link in a new window"
+		ng-click="uiWebReferencePopover.uiReferencePopover.hidePopover()")
+		| {{uiWebReferencePopover.uiReferencePopover.reference.target}}
+
+	p(ng-if="uiWebReferencePopover.uiReferencePopover.reference.metadata.description")
+		| {{uiWebReferencePopover.uiReferencePopover.reference.metadata.description}}

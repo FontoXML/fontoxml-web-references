@@ -43,23 +43,9 @@ ui-modal(
 				ui-button(
 					type="default"
 					label="Cancel"
-					click="cancel()"
-					enabled="{{!templateData.busy}}"
-				)
+					click="cancel()")
 
-			//- @NOTICE: This code should be removed as soon as there is a mechanism to give ui-buttons a "busy" state of
-			//-          some sort. See also userstory FONTOXML-661. Also the ng-if for the next button may be deleted then.
-			ui-button-bar-region(ng-if='templateData.busy')
-				span Please wait while your link is being resolved
-				ui-button(
-					type="primary"
-					icon="spinner"
-					label="{{templateData.primaryButtonLabel}}"
-					click="apply()"
-					enabled="{{false}}")
-			//- End of temporary code
-
-			ui-button-bar-region(ng-if='!templateData.busy')
+			ui-button-bar-region
 				ui-button(
 					type="primary"
 					label="{{templateData.operationData.modalPrimaryButtonLabel || 'Insert'}}"
