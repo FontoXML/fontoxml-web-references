@@ -49,10 +49,8 @@ define([
 			$modalInstance.dismiss();
 		};
 
-		if (operationData && operationData.targetSpec) {
-			$scope.templateData.reference = {
-				target: operationData.targetSpec.url
-			};
+		if (operationData && operationData.reference) {
+			$scope.templateData.reference = operationData.reference;
 		}
 	};
 });
