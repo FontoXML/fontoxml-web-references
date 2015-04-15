@@ -1,8 +1,5 @@
 {
 	"reference-web-insert-modal": {
-		"flags": [
-			"exclude-from-operations-list"
-		],
 		"steps": {
 			"type": "modal/WebReference",
 			"options": {
@@ -19,9 +16,6 @@
 		}
 	},
 	"reference-web-edit-modal": {
-		"flags": [
-			"exclude-from-operations-list"
-		],
 		"steps": {
 			"type": "modal/WebReference",
 			"options": {
