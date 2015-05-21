@@ -16,13 +16,19 @@ define([
 		// Does not allow IPv6 addresses
 		// Does not allow hostnames (lacking TLD)
 		$scope.templateData.urlPattern = new RegExp(
-			'^' +
+			'^(' +
+
 			'(https?:\\/\\/)?' + // protocol
 			'((([a-z\\d]([a-z\\d-]*[a-z\\d])?)\\.)+[a-z]{2,}|' + // domain name
 			'((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
 			'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
 			'(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-			'(\\#[-a-z\\d_]*)?$', 'i'); // fragment identifier
+			'(\\#[-a-z\\d_]*)?' + // fragment identifier
+			'|' + // OR
+			'mailto:' + // mailto: address
+			'[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' + // email before @
+			'(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?' + // email after @
+			')$', 'i');
 
 		$scope.templateData.reference = {
 			target: ''
