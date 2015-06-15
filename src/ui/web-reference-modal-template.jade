@@ -1,13 +1,14 @@
 ui-modal(
 	id="web-reference-modal"
-	ng-keyup="$event.keyCode === 13 && insertUrlReferenceForm.$valid && apply()")
+	on-enter-key="templateData.insertUrlReferenceForm.$valid && apply()"
+	on-escape-key="cancel()")
 	ui-modal-header(
 		title="{{templateData.operationData.modalTitle}}"
 		subtitle="{{templateData.operationData.modalSubtitle || 'Enter the web address for this hyperlink'}}"
 		icon="globe")
 
 	ui-modal-body
-		form.form-horizontal(novalidate name="insertUrlReferenceForm")
+		form.form-horizontal(novalidate name="templateData.insertUrlReferenceForm")
 			ui-region-root-row
 				ui-region-column(size="fixed")
 					label.control-label(for="web-reference-modal--url")
@@ -15,8 +16,8 @@ ui-modal(
 
 				ui-region-column.has-feedback(
 					ng-class="{ \
-						'has-success': insertUrlReferenceForm.url.$valid,\
-						'has-warning': insertUrlReferenceForm.url.$invalid \
+						'has-success': templateData.insertUrlReferenceForm.url.$valid,\
+						'has-warning': templateData.insertUrlReferenceForm.url.$invalid \
 					}")
 					input.form-control(
 						id="web-reference-modal--url"
@@ -30,8 +31,11 @@ ui-modal(
 
 					.icon.form-control-feedback(
 						ng-class="{ \
-							'icon-warning': insertUrlReferenceForm.url.$invalid, \
-							'icon-check': insertUrlReferenceForm.url.$valid && insertUrlReferenceForm.url.$dirty && templateData.reference.target != '' \
+							'icon-warning': templateData.insertUrlReferenceForm.url.$invalid, \
+							'icon-check': \
+								templateData.insertUrlReferenceForm.url.$valid &&\
+								templateData.insertUrlReferenceForm.url.$dirty &&\
+								templateData.reference.target != '' \
 						}")
 
 	ui-modal-footer
