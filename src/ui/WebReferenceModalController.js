@@ -1,8 +1,6 @@
 define([
-	'editor'
 ], function (
-	editor
-) {
+	) {
 	'use strict';
 
 	return /* @ngInject */ function WebReferenceModalController ($scope, $modalInstance, operationData) {
