@@ -12,7 +12,7 @@ ui-modal(
 			ui-region-root-row
 				ui-region-column(size="fixed")
 					label.control-label(for="web-reference-modal--url")
-						| Web address
+						| {{templateData.operationData.fieldLabel || 'Web address'}}
 
 				ui-region-column.has-feedback(
 					ng-class="{ \
