@@ -1,6 +1,6 @@
 {
   "name": "fontoxml-references-web",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Provide UI components for creating references to the web.",
   "main": "src/main.js",
   "private": true,
@@ -12,10 +12,10 @@
   ],
   "dependencies": {
     "fontoxml-modular-ui": "git@bitbucket.org:liones/fontoxml-modular-ui.git#^1.0.0",
-    "fontoxml-references": "git@bitbucket.org:liones/fontoxml-references.git#develop",
-    "fontoxml-ui-buttons": "git@bitbucket.org:liones/fontoxml-ui-buttons.git#develop",
-    "fontoxml-ui-modal": "git@bitbucket.org:liones/fontoxml-ui-modal.git#develop",
-    "fontoxml-ui-regions": "git@bitbucket.org:liones/fontoxml-ui-regions.git#develop",
-    "fontoxml-ui-tooltips": "git@bitbucket.org:liones/fontoxml-ui-tooltips.git#develop"
+    "fontoxml-references": "git@bitbucket.org:liones/fontoxml-references.git#^1.0.0",
+    "fontoxml-ui-buttons": "git@bitbucket.org:liones/fontoxml-ui-buttons.git#^1.0.0",
+    "fontoxml-ui-modal": "git@bitbucket.org:liones/fontoxml-ui-modal.git#^1.0.0",
+    "fontoxml-ui-regions": "git@bitbucket.org:liones/fontoxml-ui-regions.git#^1.0.0",
+    "fontoxml-ui-tooltips": "git@bitbucket.org:liones/fontoxml-ui-tooltips.git#^1.0.0"
   }
 }
