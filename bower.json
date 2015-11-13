@@ -1,6 +1,6 @@
 {
   "name": "fontoxml-references-web",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provide UI components for creating references to the web.",
   "main": "src/main.js",
   "private": true,

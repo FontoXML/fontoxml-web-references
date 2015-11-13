@@ -5,7 +5,7 @@ define([
 	'./ui/WebReferenceModalController',
 	'./ui/createUiWebReferencePopoverDirective',
 
-	'text!./sx/operations.json'
+	'json!./sx/operations.json'
 ], function (
 	uiManager,
 	operationsManager,
@@ -21,6 +21,6 @@ define([
 		uiManager.addController('WebReferenceModalController', WebReferenceModalController);
 		uiManager.addDirective('uiWebReferencePopover', createUiWebReferencePopoverDirective);
 
-		operationsManager.addOperations(JSON.parse(operationsJson));
+		operationsManager.addOperations(operationsJson);
 	};
 });
