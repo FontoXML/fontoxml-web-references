@@ -2,6 +2,7 @@
 
 ## next (1.1.1)
 
+Add warning message for invalid URL in web link modal
 Make web link validation less strict to allow hostnames
 
 ## 1.1.0

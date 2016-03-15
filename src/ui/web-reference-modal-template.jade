@@ -15,29 +15,38 @@ ui-modal(
 						| {{templateData.operationData.fieldLabel || 'Web address'}}
 
 				ui-region-column.has-feedback(
+					gutter-size="small"
 					ng-class="{ \
 						'has-success': templateData.insertUrlReferenceForm.url.$valid,\
 						'has-warning': templateData.insertUrlReferenceForm.url.$invalid \
 					}")
-					input.form-control(
-						ui-autofocus
-						id="web-reference-modal--url"
-						name="url"
-						type="text"
-						ng-model="templateData.reference.target"
-						ng-blur="onBlur()"
-						ng-paste="onPaste()"
-						ng-pattern="templateData.urlPattern"
-						required)
+					ui-region-row
+						input.form-control(
+							ui-autofocus
+							id="web-reference-modal--url"
+							name="url"
+							type="text"
+							ng-model="templateData.reference.target"
+							ng-blur="onBlur()"
+							ng-paste="onPaste()"
+							ng-pattern="templateData.urlPattern"
+							required)
 
-					.icon.form-control-feedback(
-						ng-class="{ \
-							'icon-warning': templateData.insertUrlReferenceForm.url.$invalid, \
-							'icon-check': \
-								templateData.insertUrlReferenceForm.url.$valid &&\
-								templateData.insertUrlReferenceForm.url.$dirty &&\
-								templateData.reference.target != '' \
-						}")
+						.icon.form-control-feedback(
+							ng-class="{ \
+								'icon-warning': templateData.insertUrlReferenceForm.url.$invalid, \
+								'icon-check': \
+									templateData.insertUrlReferenceForm.url.$valid &&\
+									templateData.insertUrlReferenceForm.url.$dirty &&\
+									templateData.reference.target != '' \
+							}")
+
+					ui-region-row
+						ui-region-content
+							.alert.alert--warning(
+								ng-if="templateData.insertUrlReferenceForm.url.$invalid")
+								p
+									| Please enter a valid URL in order to proceed.
 
 	ui-modal-footer
 		ui-button-bar
