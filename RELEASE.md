@@ -1,5 +1,9 @@
 # fontoxml-references-web
 
+## next (1.1.2)
+
+Fix the validation of urls by allowing additional characters, make the validation testable, and prevent the addition of http:// to mailto: urls
+
 ## 1.1.1
 
 Add warning message for invalid URL in web link modal.
