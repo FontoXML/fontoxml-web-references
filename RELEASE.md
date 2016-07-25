@@ -1,8 +1,8 @@
 # fontoxml-references-web
 
-## next (1.1.2)
+## next (1.2.0)
 
-Fix the validation of urls by allowing additional characters, make the validation testable, and prevent the addition of http:// to mailto: urls
+Make URL and email address validation configurable.
 
 ## 1.1.1
 

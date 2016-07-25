@@ -1,6 +1,6 @@
 ui-modal(
 	id="web-reference-modal"
-	on-enter-key="templateData.insertUrlReferenceForm.$valid && apply()"
+	on-enter-key="isValid() && apply()"
 	on-escape-key="cancel()")
 	ui-modal-header(
 		title="{{templateData.operationData.modalTitle}}"
@@ -8,7 +8,7 @@ ui-modal(
 		icon="globe")
 
 	ui-modal-body
-		form.form-horizontal(novalidate name="templateData.insertUrlReferenceForm")
+		form.form-horizontal
 			ui-region-root-row
 				ui-region-column(size="fixed")
 					label.control-label(for="web-reference-modal--url")
@@ -17,26 +17,22 @@ ui-modal(
 				ui-region-column.has-feedback(
 					gutter-size="small"
 					ng-class="{ \
-						'has-success': templateData.insertUrlReferenceForm.url.$valid,\
-						'has-warning': templateData.insertUrlReferenceForm.url.$invalid \
+						'has-success': isValid(),\
+						'has-warning': !isValid() \
 					}")
 					ui-region-row
 						input.form-control(
 							ui-autofocus
 							id="web-reference-modal--url"
-							name="url"
 							type="text"
 							ng-model="templateData.reference.target"
-							ng-blur="onBlur()"
-							ng-paste="onPaste()"
-							ng-pattern="templateData.urlPattern"
 							required)
 
 						.icon.form-control-feedback(
 							ng-class="{ \
-								'icon-warning': templateData.insertUrlReferenceForm.url.$invalid, \
+								'icon-warning': !isValid(), \
 								'icon-check': \
-									templateData.insertUrlReferenceForm.url.$valid &&\
+									isValid() &&\
 									templateData.insertUrlReferenceForm.url.$dirty &&\
 									templateData.reference.target != '' \
 							}")
@@ -44,7 +40,7 @@ ui-modal(
 					ui-region-row
 						ui-region-content
 							.alert.alert--warning(
-								ng-if="templateData.insertUrlReferenceForm.url.$invalid")
+								ng-if="!isValid()")
 								p
 									| Please enter a valid URL in order to proceed.
 
@@ -61,4 +57,4 @@ ui-modal(
 					type="primary"
 					label="{{templateData.operationData.modalPrimaryButtonLabel || 'Insert'}}"
 					click="apply()"
-					enabled="{{templateData.insertUrlReferenceForm.$valid}}")
+					enabled="{{isValid()}}")

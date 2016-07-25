@@ -1,7 +1,7 @@
 define([
-	'../api/UrlValidator'
+	'../api/isValidUrl'
 ], function (
-	UrlValidator
+	isValidUrl
 	) {
 	'use strict';
 
@@ -11,14 +11,14 @@ define([
 			operationData: operationData
 		};
 
-		$scope.templateData.urlPattern = UrlValidator.getRegExp();
-
 		$scope.templateData.reference = {
 			target: ''
 		};
 
-		$scope.apply = function () {
-			var target = $scope.templateData.reference.target;
+		// Add http:// if not already present
+		function addProtocol (url) {
+			url = url || '';
+			var target = url.trim();
 
 			if (!/(?::\/\/)|(?:mailto:)/i.exec(target)) {
 				// The validator does not allow URLs starting with just "//", so if there is no "://" or "mailto:" in
@@ -27,14 +27,22 @@ define([
 
 				target = 'http://' + target;
 			}
+			return target;
+		}
+
+		$scope.apply = function () {
 
 			operationData = Object.assign({}, operationData, {
 					targetSpec: {
-						url: target
+						url: addProtocol($scope.templateData.reference.target)
 					}
 				});
 
 			$modalInstance.close(operationData);
+		};
+
+		$scope.isValid = function () {
+			return isValidUrl(addProtocol($scope.templateData.reference.target));
 		};
 
 		$scope.cancel = function () {
