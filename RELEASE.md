@@ -1,6 +1,6 @@
 # fontoxml-references-web
 
-## next (1.2.0)
+## 1.2.0
 
 Make URL and email address validation configurable.
 
