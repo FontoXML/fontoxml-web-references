@@ -12,6 +12,6 @@ define([
 		var emailProtocol = 'mailto:',
 		emailUser = '[a-z0-9!#$%&\'*+/=?^_`{|}~\\-]+(\\.[a-z0-9!#$%&\'*+/=?^_`{|}~\\-]+)*',
 		emailDomain = '([a-z0-9]([a-z0-9-]*[a-z0-9])?\\.)*([a-z0-9]([a-z0-9-]*[a-z0-9]))?';
-		configurationManager.setDefault('web-reference-email-validity-regular-expression', new RegExp('^(' + emailProtocol + emailUser + emailDomain + ')$', 'i'));
+		configurationManager.setDefault('web-reference-email-validity-regular-expression', new RegExp('^(' + emailProtocol + emailUser + '@' +  emailDomain + ')$', 'i'));
 	};
 });
