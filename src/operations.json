@@ -1,12 +1,7 @@
 {
-	"reference-web-insert-modal": {
-		"initialData": {
-			"modalTitle": "Insert hyperlink",
-			"modalSubtitle": "Refer to a web address",
-
-			"referenceTypeName": "web"
-		},
-		"steps": {
+	"open-reference-web-insert-modal": {
+		"steps":
+		{
 			"type": "modal/WebReference",
 			"options": {
 				"controller": "WebReferenceModalController",
@@ -14,6 +9,18 @@
 				"windowClass": "modal-md"
 			}
 		}
+	},
+	"reference-web-insert-modal": {
+		"initialData": {
+			"modalTitle": "Insert hyperlink",
+			"modalSubtitle": "Refer to a web address",
+
+			"referenceTypeName": "web"
+		},
+		"steps": [
+			{ "type": "transform/setWebReferenceOperationNameBasedOnSelection" },
+			{ "type": "operation" }
+		]
 	},
 	"reference-web-edit-modal": {
 		"initialData": {
