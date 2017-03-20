@@ -1,5 +1,6 @@
 {
 	"dependencies": {
+		"fontoxml-localization": "^1.1.0",
 		"fontoxml-modular-ui": "^1.0.0",
 		"fontoxml-references": "^1.0.0",
 		"fontoxml-ui-buttons": "^1.0.0",

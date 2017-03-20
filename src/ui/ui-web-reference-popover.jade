@@ -1,10 +1,10 @@
 div
-	div.reference-caption Hyperlink to:&#32;
+	div.reference-caption {{uiWebReferencePopover.messages.caption}}&#32;
 
 	a.reference-link.reference-link--technical(
 		href="{{uiWebReferencePopover.uiReferencePopover.reference.target}}"
 		target="_blank"
-		ui-tooltip-content="Click to open this link in a new window"
+		ui-tooltip-content="{{uiWebReferencePopover.messages.hyperlinkTooltip}}"
 		ng-click="uiWebReferencePopover.uiReferencePopover.hidePopover()")
 		| {{uiWebReferencePopover.uiReferencePopover.reference.target}}
 

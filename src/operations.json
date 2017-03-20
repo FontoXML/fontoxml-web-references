@@ -12,8 +12,8 @@
 	},
 	"reference-web-insert-modal": {
 		"initialData": {
-			"modalTitle": "Insert hyperlink",
-			"modalSubtitle": "Refer to a web address",
+			"modalTitle": "t__Insert hyperlink",
+			"modalSubtitle": "t__Refer to a web address",
 
 			"referenceTypeName": "web"
 		},
@@ -24,9 +24,9 @@
 	},
 	"reference-web-edit-modal": {
 		"initialData": {
-			"modalTitle": "Edit hyperlink",
-			"modalSubtitle": "Refer to a web address",
-			"modalPrimaryButtonLabel": "Save",
+			"modalTitle": "t__Edit hyperlink",
+			"modalSubtitle": "t__Refer to a web address",
+			"modalPrimaryButtonLabel": "t__Save",
 
 			"referenceTypeName": "web"
 		},

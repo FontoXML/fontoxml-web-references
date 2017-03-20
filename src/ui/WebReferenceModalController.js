@@ -1,14 +1,24 @@
 define([
+	'fontoxml-localization/t',
+
 	'../api/isValidUrl'
 ], function (
+	t,
+
 	isValidUrl
-	) {
+) {
 	'use strict';
 
-	return /* @ngInject */ function WebReferenceModalController ($scope, $modalInstance, operationData) {
+	return /* @ngInject */ function WebReferenceModalController ($scope, $modalInstance, operationData) { // eslint-disable-line no-inline-comments
 		$scope.templateData = {
 			busy: false,
-			operationData: operationData
+			operationData: operationData,
+			messages: {
+				modalDefaultSubtitle: t('Enter the web address for this hyperlink'),
+				invalidLinkWarning: t('Please enter a valid URL in order to proceed.'),
+				cancelButtonLabel: t('Cancel'),
+				applyButtonDefaultLabel: t('Insert')
+			}
 		};
 
 		$scope.templateData.reference = {

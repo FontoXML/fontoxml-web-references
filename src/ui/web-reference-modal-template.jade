@@ -4,7 +4,7 @@ ui-modal(
 	on-escape-key="cancel()")
 	ui-modal-header(
 		title="{{templateData.operationData.modalTitle}}"
-		subtitle="{{templateData.operationData.modalSubtitle || 'Enter the web address for this hyperlink'}}"
+		subtitle="{{templateData.operationData.modalSubtitle || templateData.messages.modalDefaultSubtitle}}"
 		icon="globe")
 
 	ui-modal-body
@@ -42,19 +42,19 @@ ui-modal(
 							.alert.alert--warning(
 								ng-if="!isValid()")
 								p
-									| Please enter a valid URL in order to proceed.
+									| {{templateData.messages.invalidLinkWarning}}
 
 	ui-modal-footer
 		ui-button-bar
 			ui-button-bar-region
 				ui-button(
 					type="default"
-					label="Cancel"
+					label="{{templateData.messages.cancelButtonLabel}}"
 					click="cancel()")
 
 			ui-button-bar-region
 				ui-button(
 					type="primary"
-					label="{{templateData.operationData.modalPrimaryButtonLabel || 'Insert'}}"
+					label="{{templateData.operationData.modalPrimaryButtonLabel || templateData.messages.applyButtonDefaultLabel}}"
 					click="apply()"
 					enabled="{{isValid()}}")

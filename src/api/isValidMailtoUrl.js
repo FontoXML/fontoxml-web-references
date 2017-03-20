@@ -6,8 +6,6 @@ define([
 	'use strict';
 
 	return function isValidMailtoUrl (url) {
-		return url.startsWith('mailto:')
-			? configuredWebReferenceEmailValidityRegExp.test(url)
-			: false;
+		return url.startsWith('mailto:') && configuredWebReferenceEmailValidityRegExp.test(url);
 	};
 });

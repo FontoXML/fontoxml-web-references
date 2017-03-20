@@ -25,6 +25,5 @@ define([
 		}
 
 		return configuredWebReferenceUrlValidityRegExp.test(url);
-
 	};
 });
