@@ -7,8 +7,8 @@ define([
 	'./api/isValidEmail',
 	'./api/isValidMailtoUrl',
 	'./api/isValidWebUrl',
-	'./ui/WebReferenceModalController',
-	'./ui/createUiWebReferencePopoverDirective'
+	'./ui/WebReferenceModal.jsx',
+	'./ui/WebReferencePopover.jsx'
 ], function (
 	uiManager,
 	addTransform,
@@ -18,8 +18,8 @@ define([
 	isValidEmail,
 	isValidMailtoUrl,
 	isValidWebUrl,
-	WebReferenceModalController,
-	createUiWebReferencePopoverDirective
+	WebReferenceModal,
+	WebReferencePopover
 ) {
 	'use strict';
 
@@ -45,24 +45,24 @@ define([
 				else {
 					var intermediateUrl = addProtocol(potentialUrl);
 
-					if (isValidWebUrl(intermediateUrl) && potentialUrl.match(/\.[a-z]{2,}|\:[0-9]{2,}/g)) {
+					if (isValidWebUrl(intermediateUrl) && potentialUrl.match(/\.[a-z]{2,}|:[0-9]{2,}/g)) {
 						targetUrl = intermediateUrl;
 					}
 				}
 
 				if (targetUrl) {
 					// The selection contained a valid URL, skip the modal
-					stepData.targetSpec = { url: targetUrl };
+					stepData.url = targetUrl;
 					stepData.operationName = 'do-nothing';
 					return stepData;
 				}
 
-				stepData.operationName = 'open-reference-web-insert-modal';
+				stepData.operationName = '_open-web-reference-modal-for-insert';
 
 				return stepData;
 			});
 
-		uiManager.addController('WebReferenceModalController', WebReferenceModalController);
-		uiManager.addDirective('uiWebReferencePopover', createUiWebReferencePopoverDirective);
+		uiManager.registerReactComponent('WebReferenceModal', WebReferenceModal.default || WebReferenceModal);
+		uiManager.registerReactComponent('WebReferencePopover', WebReferencePopover.default || WebReferencePopover);
 	};
 });

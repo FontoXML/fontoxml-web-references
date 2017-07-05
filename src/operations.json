@@ -1,45 +1,27 @@
 {
-	"open-reference-web-insert-modal": {
-		"steps":
-		{
-			"type": "modal/WebReference",
-			"options": {
-				"controller": "WebReferenceModalController",
-				"templateUrl": "fontoxml-references-web/ui/web-reference-modal-template.html",
-				"windowClass": "modal-md"
-			}
-		}
-	},
-	"reference-web-insert-modal": {
+	"_open-web-reference-modal-for-insert": {
 		"initialData": {
 			"modalTitle": "t__Insert hyperlink",
-			"modalSubtitle": "t__Refer to a web address",
-
-			"referenceTypeName": "web"
+			"modalPrimaryButtonLabel": "t__Insert"
 		},
+		"steps":
+		{
+			"type": "modal/WebReferenceModal"
+		}
+	},
+	"open-web-reference-modal-for-insert": {
 		"steps": [
 			{ "type": "transform/setWebReferenceOperationNameBasedOnSelection" },
 			{ "type": "operation" }
 		]
 	},
-	"reference-web-edit-modal": {
+	"open-web-reference-modal-for-edit": {
 		"initialData": {
 			"modalTitle": "t__Edit hyperlink",
-			"modalSubtitle": "t__Refer to a web address",
-			"modalPrimaryButtonLabel": "t__Save",
-
-			"referenceTypeName": "web"
+			"modalPrimaryButtonLabel": "t__Save"
 		},
 		"steps": {
-			"type": "modal/WebReference",
-			"options": {
-				"controller": "WebReferenceModalController",
-				"templateUrl": "fontoxml-references-web/ui/web-reference-modal-template.html",
-				"windowClass": "modal-md"
-			},
-			"data": {
-				"contextNodeId": "{{contextNodeId}}"
-			}
+			"type": "modal/WebReferenceModal"
 		}
 	}
 }

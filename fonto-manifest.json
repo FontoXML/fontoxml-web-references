@@ -1,12 +1,13 @@
 {
 	"dependencies": {
+		"fontoxml-fx": "^1.0.0",
 		"fontoxml-localization": "^1.1.0",
 		"fontoxml-modular-ui": "^2.0.0",
 		"fontoxml-references": "^1.0.0",
 		"fontoxml-ui-buttons": "^1.0.0",
 		"fontoxml-ui-modal": "^1.0.0",
 		"fontoxml-ui-regions": "^1.0.0",
-		"fontoxml-ui-tooltips": "^1.0.0"
-	},
-	"devDependencies": {}
+		"fontoxml-ui-tooltips": "^1.0.0",
+		"fontoxml-vendor-react": "^1.3.2"
+	}
 }
