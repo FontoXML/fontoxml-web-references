@@ -9,6 +9,6 @@
 		"fontoxml-references": "^1.0.0",
 		"fontoxml-selection": "^1.4.2",
 		"fontoxml-vendor-fds": "^4.2.1",
-		"fontoxml-vendor-react": "^1.3.2"
+		"fontoxml-vendors": "^2.1.0"
 	}
 }
