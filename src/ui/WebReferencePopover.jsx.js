@@ -12,12 +12,12 @@ function handleOpenPreview ({ target }) {
 }
 
 class WebReferencePopover extends Component {
-	renderTarget = ({ openPreview, target }) => {
+	renderReference = ({ openPreview, reference }) => {
 		return (
 			<PopoverBody>
 				<Text>{t('Hyperlink to:')}</Text>
 				<TextLink
-					label={target}
+					label={reference.target}
 					onClick={openPreview}
 				/>
 			</PopoverBody>
@@ -28,7 +28,7 @@ class WebReferencePopover extends Component {
 		return (
 			<FxReferencePopover
 				{...this.props}
-				renderTarget={this.renderTarget}
+				renderReference={this.renderReference}
 				openPreview={handleOpenPreview}
 			/>
 		);
