@@ -1,3 +1,3 @@
-# FontoXML/references-web
+# fontoxml-web-references
 
-Contains the web reference implementation of FontoXML. Provide UI components for creating references to the web.
+Provides UI components for creating references to the web.

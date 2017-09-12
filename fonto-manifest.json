@@ -1,14 +1,5 @@
 {
 	"dependencies": {
-		"fontoxml-configuration": "^2.0.2",
-		"fontoxml-dom-utils": "^1.2.5",
-		"fontoxml-fx": "^1.0.0",
-		"fontoxml-localization": "^1.1.0",
-		"fontoxml-modular-ui": "^2.0.0",
-		"fontoxml-operations": "^1.7.3",
-		"fontoxml-references": "^1.0.0",
-		"fontoxml-selection": "^1.4.2",
-		"fontoxml-vendor-fds": "^4.2.1",
-		"fontoxml-vendors": "^2.1.0"
+		"fontoxml-platform-base": "^2.10.0"
 	}
 }
