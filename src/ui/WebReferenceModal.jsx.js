@@ -1,5 +1,8 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+
 import t from 'fontoxml-localization/t';
+
 import {
 	Button,
 	Form,
@@ -10,10 +13,12 @@ import {
 	ModalHeader,
 	TextInput
 } from 'fontoxml-vendor-fds/components';
+import { hasFormFeedback } from 'fontoxml-vendor-fds/system';
+
 import addProtocol from '../api/addProtocol';
 import isValidUrl from '../api/isValidUrl';
 
-function validateUrl (value) {
+function validateUrl(value) {
 	if (value && isValidUrl(addProtocol(value))) {
 		return null;
 	}
@@ -22,53 +27,73 @@ function validateUrl (value) {
 }
 
 export default class WebReferenceModal extends Component {
-	state = {
-		url: this.props.data.url || ''
+	static propTypes = {
+		cancelModal: PropTypes.func.isRequired,
+		data: PropTypes.shape({
+			modalPrimaryButtonLabel: PropTypes.string,
+			modalTitle: PropTypes.string,
+			url: PropTypes.string
+		}),
+		submitModal: PropTypes.func.isRequired
 	};
 
-	handleTextInputChange = url => this.setState({ url });
+	state = {
+		feedbackByName: {
+			url: null
+		},
+		valueByName: {
+			url: this.props.data.url || ''
+		}
+	};
 
-	handleSubmitButtonClick = () => {
-		const { submitModal } = this.props;
-		const { url } = this.state;
+	handleSubmitButtonClick = () =>
+		this.props.submitModal({ url: addProtocol(this.state.valueByName.url) });
 
-		submitModal({ url: addProtocol(url) });
-	}
+	handleKeyDown = event => {
+		switch (event.key) {
+			case 'Escape':
+				this.props.cancelModal();
+				break;
+			case 'Enter':
+				if (!hasFormFeedback(this.state.feedbackByName)) {
+					this.handleSubmitButtonClick();
+				}
+				break;
+		}
+	};
 
-	render () {
-		const {
-			cancelModal,
-			data: {
-				modalPrimaryButtonLabel,
-				modalTitle
-			}
-		} = this.props;
-		const { url } = this.state;
+	handleFormChange = ({ feedbackByName, valueByName }) =>
+		this.setState({ feedbackByName, valueByName });
+
+	render() {
+		const { cancelModal, data: { modalPrimaryButtonLabel, modalTitle } } = this.props;
+		const { feedbackByName, valueByName } = this.state;
 
 		return (
-			<Modal size="m">
+			<Modal size="m" onKeyDown={this.handleKeyDown}>
 				<ModalHeader title={modalTitle || t('Edit hyperlink')} icon="globe" />
+
 				<ModalBody>
-					<Form labelPosition="before">
+					<Form
+						feedbackByName={feedbackByName}
+						labelPosition="before"
+						onChange={this.handleFormChange}
+						valueByName={valueByName}
+					>
 						<FormRow label={t('Web address')}>
-							<TextInput
-								name="url"
-								onChange={this.handleTextInputChange}
-								validate={validateUrl}
-								value={url}
-							/>
+							<TextInput name="url" validate={validateUrl} />
 						</FormRow>
 					</Form>
 				</ModalBody>
+
 				<ModalFooter>
+					<Button label={t('Cancel')} onClick={cancelModal} />
+
 					<Button
-						label={t('Cancel')}
-						onClick={cancelModal}
-					/>
-					<Button
+						isDisabled={hasFormFeedback(feedbackByName)}
 						label={modalPrimaryButtonLabel || t('Save')}
-						type="primary"
 						onClick={this.handleSubmitButtonClick}
+						type="primary"
 					/>
 				</ModalFooter>
 			</Modal>
