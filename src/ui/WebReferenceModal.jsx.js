@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import t from 'fontoxml-localization/t';
-
 import {
 	Button,
 	Form,
@@ -12,8 +10,9 @@ import {
 	ModalFooter,
 	ModalHeader,
 	TextInput
-} from 'fontoxml-vendor-fds/components';
-import { hasFormFeedback } from 'fontoxml-vendor-fds/system';
+} from 'fds/components';
+import { hasFormFeedback } from 'fds/system';
+import t from 'fontoxml-localization/t';
 
 import addProtocol from '../api/addProtocol';
 import isValidUrl from '../api/isValidUrl';
