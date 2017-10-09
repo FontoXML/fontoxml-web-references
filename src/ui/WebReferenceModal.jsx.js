@@ -29,6 +29,7 @@ export default class WebReferenceModal extends Component {
 	static propTypes = {
 		cancelModal: PropTypes.func.isRequired,
 		data: PropTypes.shape({
+			modalIcon: PropTypes.string,
 			modalPrimaryButtonLabel: PropTypes.string,
 			modalTitle: PropTypes.string,
 			url: PropTypes.string
@@ -65,12 +66,15 @@ export default class WebReferenceModal extends Component {
 		this.setState({ feedbackByName, valueByName });
 
 	render() {
-		const { cancelModal, data: { modalPrimaryButtonLabel, modalTitle } } = this.props;
+		const {
+			cancelModal,
+			data: { modalIcon, modalPrimaryButtonLabel, modalTitle }
+		} = this.props;
 		const { feedbackByName, valueByName } = this.state;
 
 		return (
 			<Modal size="m" onKeyDown={this.handleKeyDown}>
-				<ModalHeader title={modalTitle || t('Edit hyperlink')} icon="globe" />
+				<ModalHeader icon={modalIcon} title={modalTitle || t('Edit hyperlink')} />
 
 				<ModalBody>
 					<Form
