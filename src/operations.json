@@ -10,12 +10,66 @@
 		}
 	},
 	"open-web-reference-modal-for-insert": {
+		"__documentation": {
+			"fontosdk": true,
+			"category": "add-on/fontoxml-web-references",
+			"summary": "Opens the web reference modal for inserting a web reference.",
+			"params": [
+				{
+					"name": "modalIcon",
+					"type": "string",
+					"description": "(Optional) The icon being shown at the top of the modal. The value should be a valid font-awsome icon name."
+				},
+				{
+					"name": "modalPrimaryButtonLabel",
+					"type": "string",
+					"description": "(Optional) The label for the primary button. Defaults to `t__Insert`."
+				},
+				{
+					"name": "modalTitle",
+					"type": "string",
+					"description": "(Optional) The title being shown at the top of the modal. Defaults to `t__Edit hyperlink`."
+				},
+				{
+					"name": "url",
+					"type": "string",
+					"description": "(Optional) The url to be inserted. This will be empty when inserting a new web reference."
+				}
+			]
+		},
 		"steps": [
 			{ "type": "transform/setWebReferenceOperationNameBasedOnSelection" },
 			{ "type": "operation" }
 		]
 	},
 	"open-web-reference-modal-for-edit": {
+		"__documentation": {
+			"fontosdk": true,
+			"category": "add-on/fontoxml-web-references",
+			"summary": "Opens the web reference modal for editing a web reference. This modal has its modal title and primary button label already set.",
+			"params": [
+				{
+					"name": "modalIcon",
+					"type": "string",
+					"description": "(Optional) The icon being shown at the top of the modal. The value should be a valid font-awsome icon name."
+				},
+				{
+					"name": "modalPrimaryButtonLabel",
+					"type": "string",
+					"description": "(Optional) The label for the primary button. Defaults to `t__Save`."
+				},
+				{
+					"name": "modalTitle",
+					"type": "string",
+					"description": "(Optional) The title being shown at the top of the modal. Defaults to `t__Edit hyperlink`."
+				},
+				{
+					"name": "url",
+					"type": "string",
+					"description": "(Optional) The url to be edited."
+				}
+			]
+		},
 		"initialData": {
 			"modalTitle": "t__Edit hyperlink",
 			"modalPrimaryButtonLabel": "t__Save"
