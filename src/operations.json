@@ -14,6 +14,11 @@
 			"fontosdk": true,
 			"category": "add-on/fontoxml-web-references",
 			"summary": "Opens the web reference modal for inserting a web reference.",
+			"description": [
+				"If this operation is executed while the selected text is a valid URL, the modal is skipped and the",
+				"url step data property is set to that URL directly. This simplifies the process of converting a",
+				"selected plain text URL to a reference."
+			],
 			"params": [
 				{
 					"name": "modalIcon",
