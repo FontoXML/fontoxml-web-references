@@ -37,6 +37,8 @@ export default class WebReferenceModal extends Component {
 		submitModal: PropTypes.func.isRequired
 	};
 
+	textInputRef = null;
+
 	state = {
 		feedbackByName: {
 			url: null
@@ -65,6 +67,8 @@ export default class WebReferenceModal extends Component {
 	handleFormChange = ({ feedbackByName, valueByName }) =>
 		this.setState({ feedbackByName, valueByName });
 
+	handleTextInputRef = textInputRef => (this.textInputRef = textInputRef);
+
 	render() {
 		const {
 			cancelModal,
@@ -84,7 +88,11 @@ export default class WebReferenceModal extends Component {
 						valueByName={valueByName}
 					>
 						<FormRow label={t('Web address')}>
-							<TextInput name="url" validate={validateUrl} />
+							<TextInput
+								name="url"
+								ref={this.handleTextInputRef}
+								validate={validateUrl}
+							/>
 						</FormRow>
 					</Form>
 				</ModalBody>
@@ -101,5 +109,9 @@ export default class WebReferenceModal extends Component {
 				</ModalFooter>
 			</Modal>
 		);
+	}
+
+	componentDidMount() {
+		this.textInputRef.focus();
 	}
 }
