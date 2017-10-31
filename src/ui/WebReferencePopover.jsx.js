@@ -23,12 +23,10 @@ function handleOpenPreview({ target }) {
  * ```javascript
  * configureAsInlineLink(sxModule, 'self::xref[@format="html"]', 'hyperlink', undefined, {
  * 	emptyElementPlaceholderText: 'type the link text',
- * 		visualization: {
- * 			popoverComponentName: 'WebReferencePopover',
- * 			popoverData: {
- * 				editOperationName: 'dita-web-reference-edit',
- * 				targetQuery: '@href'
- * 			}
+ * 		popoverComponentName: 'WebReferencePopover',
+ * 		popoverData: {
+ * 			editOperationName: 'dita-web-reference-edit',
+ * 			targetQuery: '@href'
  * 		}
  * });
  * ```
