@@ -1,6 +1,8 @@
+---
 category: add-on/fontoxml-web-references
+---
 
-# Add-on web references (fontoxml-web-references)
+# Web references library
 
 This add-on provides a popover and a modal for use with web references.
 
