@@ -8,7 +8,7 @@ This add-on provides a popover and a modal for use with web references.
 
 ## Getting started
 
-This add-on can be added to an editor by selecting it in the list of add-ons available on the SDK porta. This can then be installed as usual.
+This add-on can be added to an editor by selecting it in the list of add-ons available on the SDK portal. This can then be installed as usual.
 
 ---
 
