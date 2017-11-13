@@ -1,6 +1,2 @@
-.DS_Store
-.idea
-*.sublime-workspace
-node_modules
-lib
-*.log
+coverage
+platform
