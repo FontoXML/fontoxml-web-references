@@ -40,6 +40,13 @@
 					"type": "string",
 					"description": "(Optional) The url to be inserted. This will be empty when inserting a new web reference."
 				}
+			],
+			"returns": [
+				{
+					"name": "url",
+					"type": "string",
+					"description": "The URL as entered by the user or selected in the content if the modal was skipped."
+				}
 			]
 		},
 		"steps": [
@@ -72,6 +79,13 @@
 					"name": "url",
 					"type": "string",
 					"description": "(Optional) The url to be edited."
+				}
+			],
+			"returns": [
+				{
+					"name": "url",
+					"type": "string",
+					"description": "The URL as entered by the user."
 				}
 			]
 		},
