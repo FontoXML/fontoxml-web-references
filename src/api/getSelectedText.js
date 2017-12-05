@@ -13,6 +13,9 @@ define([
 
 	// TODO: move this to the public API some day, see also domQuery.getTextContent
 	return function getSelectedText () {
+		if (!selectionManager.hasSelection()) {
+			return '';
+		}
 		var startContainer = selectionManager.getStartContainer();
 		var endContainer = selectionManager.getEndContainer();
 		var startOffset = selectionManager.getStartOffset();
