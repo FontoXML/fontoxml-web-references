@@ -43,6 +43,7 @@ class WebReferencePopover extends Component {
 			contextNodeId: PropTypes.string.isRequired,
 			deleteOperationName: PropTypes.string,
 			editOperationName: PropTypes.string,
+			isReadOnly: PropTypes.bool,
 			targetIsPermanentId: PropTypes.bool,
 			targetQuery: PropTypes.string.isRequired
 		}).isRequired
