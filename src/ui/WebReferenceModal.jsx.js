@@ -2,28 +2,36 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import {
+	Block,
 	Button,
+	Flex,
 	Form,
 	FormRow,
 	Modal,
 	ModalBody,
 	ModalFooter,
 	ModalHeader,
-	TextInput
+	TextInput,
+	TextLink
 } from 'fds/components';
-import { hasFormFeedback } from 'fds/system';
 import t from 'fontoxml-localization/t';
 
 import addProtocol from '../api/addProtocol';
 import isValidUrl from '../api/isValidUrl';
 
 function validateUrl(value) {
-	if (value && isValidUrl(addProtocol(value))) {
+	if (!value || isValidUrl(addProtocol(value))) {
 		return null;
 	}
 
-	return { message: t('Please enter a valid URL in order to proceed.'), connotation: 'warning' };
+	return {
+		message: t('Looks like that URL may not work. Maybe try to visit it, just to be sure?'),
+		connotation: 'warning'
+	};
 }
+
+// To align the TextLink with the TextInput, uses the same padding as defined in TextInput.
+const textLinkContainerStyles = { padding: '.1875rem 0' };
 
 export default class WebReferenceModal extends Component {
 	static propTypes = {
@@ -57,9 +65,7 @@ export default class WebReferenceModal extends Component {
 				this.props.cancelModal();
 				break;
 			case 'Enter':
-				if (!hasFormFeedback(this.state.feedbackByName)) {
-					this.handleSubmitButtonClick();
-				}
+				this.handleSubmitButtonClick();
 				break;
 		}
 	};
@@ -69,6 +75,10 @@ export default class WebReferenceModal extends Component {
 
 	handleTextInputRef = textInputRef => (this.textInputRef = textInputRef);
 
+	handleVisitLinkClick = () => {
+		window.open(addProtocol(this.state.valueByName.url), '_blank');
+	};
+
 	render() {
 		const {
 			cancelModal,
@@ -77,7 +87,7 @@ export default class WebReferenceModal extends Component {
 		const { feedbackByName, valueByName } = this.state;
 
 		return (
-			<Modal size="m" onKeyDown={this.handleKeyDown}>
+			<Modal size="s" onKeyDown={this.handleKeyDown}>
 				<ModalHeader icon={modalIcon} title={modalTitle || t('Edit hyperlink')} />
 
 				<ModalBody>
@@ -87,12 +97,23 @@ export default class WebReferenceModal extends Component {
 						onChange={this.handleFormChange}
 						valueByName={valueByName}
 					>
-						<FormRow label={t('Web address')}>
-							<TextInput
-								name="url"
-								ref={this.handleTextInputRef}
-								validate={validateUrl}
-							/>
+						<FormRow label={t('Web address (URL)')}>
+							<Flex alignItems="flex-start" spaceSize="m">
+								<TextInput
+									name="url"
+									ref={this.handleTextInputRef}
+									validate={validateUrl}
+								/>
+
+								<Block applyCss={textLinkContainerStyles}>
+									<TextLink
+										icon="external-link"
+										isDisabled={!valueByName['url']}
+										label="Visit"
+										href={addProtocol(valueByName['url'])}
+									/>
+								</Block>
+							</Flex>
 						</FormRow>
 					</Form>
 				</ModalBody>
@@ -101,8 +122,8 @@ export default class WebReferenceModal extends Component {
 					<Button label={t('Cancel')} onClick={cancelModal} />
 
 					<Button
-						isDisabled={hasFormFeedback(feedbackByName)}
-						label={modalPrimaryButtonLabel || t('Save')}
+						isDisabled={!valueByName['url']}
+						label={modalPrimaryButtonLabel || t('Apply')}
 						onClick={this.handleSubmitButtonClick}
 						type="primary"
 					/>
