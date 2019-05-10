@@ -109,7 +109,7 @@ export default class WebReferenceModal extends Component {
 									<TextLink
 										icon="external-link"
 										isDisabled={!valueByName['url']}
-										label="Visit"
+										label={t('Visit')}
 										href={addProtocol(valueByName['url'])}
 									/>
 								</Block>
