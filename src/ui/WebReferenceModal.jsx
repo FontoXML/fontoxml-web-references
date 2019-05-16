@@ -14,10 +14,10 @@ import {
 	TextInput,
 	TextLink
 } from 'fds/components';
-import t from 'fontoxml-localization/t';
+import t from 'fontoxml-localization/src/t.js';
 
-import addProtocol from '../api/addProtocol';
-import isValidUrl from '../api/isValidUrl';
+import addProtocol from '../api/addProtocol.js';
+import isValidUrl from '../api/isValidUrl.js';
 
 function validateUrl(value) {
 	if (!value || isValidUrl(addProtocol(value))) {

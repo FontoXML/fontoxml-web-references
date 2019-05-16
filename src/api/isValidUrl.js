@@ -1,29 +1,25 @@
-define([
-	'fontoxml-configuration/get!web-reference-url-validity-regular-expression',
-	'fontoxml-configuration/get!web-reference-email-validity-regular-expression'
-], function (
-	configuredWebReferenceUrlValidityRegExp,
-	configuredWebReferenceEmailValidityRegExp
-) {
-	'use strict';
+import configurationManager from 'fontoxml-configuration/src/configurationManager.js';
+let configuredWebReferenceUrlValidityRegExp = configurationManager.get(
+	'web-reference-url-validity-regular-expression'
+);
+let configuredWebReferenceEmailValidityRegExp = configurationManager.get(
+	'web-reference-email-validity-regular-expression'
+);
 
-	return function (url) {
-		if (url.startsWith('mailto:')) {
-			return configuredWebReferenceEmailValidityRegExp.test(url);
-		}
+export default function(url) {
+	if (url.startsWith('mailto:')) {
+		return configuredWebReferenceEmailValidityRegExp.test(url);
+	}
 
-		var splittedUrl = url.split('://');
+	var splittedUrl = url.split('://');
 
-		if (splittedUrl.length !== 2) {
-			return false;
-		}
+	if (splittedUrl.length !== 2) {
+		return false;
+	}
 
-		if (splittedUrl[0] !== 'http' &&
-			splittedUrl[0] !== 'https' &&
-			splittedUrl[0] !== 'ftp') {
-			return false;
-		}
+	if (splittedUrl[0] !== 'http' && splittedUrl[0] !== 'https' && splittedUrl[0] !== 'ftp') {
+		return false;
+	}
 
-		return configuredWebReferenceUrlValidityRegExp.test(url);
-	};
-});
+	return configuredWebReferenceUrlValidityRegExp.test(url);
+}

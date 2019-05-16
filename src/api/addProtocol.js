@@ -1,19 +1,13 @@
-define([
-], function (
-) {
-	'use strict';
+export default function addProtocol(url) {
+	url = url || '';
+	var target = url.trim();
 
-	return function addProtocol (url) {
-		url = url || '';
-		var target = url.trim();
+	if (!/(?::\/\/)|(?:mailto:)/i.exec(target)) {
+		// The validator does not allow URLs starting with just "//", so if there is no "://" or "mailto:" in
+		// the target, we can assume the link has no protocol yet, and would erroneously behave like a relative
+		// URL.
 
-		if (!/(?::\/\/)|(?:mailto:)/i.exec(target)) {
-			// The validator does not allow URLs starting with just "//", so if there is no "://" or "mailto:" in
-			// the target, we can assume the link has no protocol yet, and would erroneously behave like a relative
-			// URL.
-
-			target = 'http://' + target;
-		}
-		return target;
-	};
-});
+		target = 'http://' + target;
+	}
+	return target;
+}
