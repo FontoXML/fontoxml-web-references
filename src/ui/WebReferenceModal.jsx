@@ -62,9 +62,11 @@ export default class WebReferenceModal extends Component {
 	handleKeyDown = event => {
 		switch (event.key) {
 			case 'Escape':
+				event.preventDefault();
 				this.props.cancelModal();
 				break;
 			case 'Enter':
+				event.preventDefault();
 				this.handleSubmitButtonClick();
 				break;
 		}
