@@ -32,6 +32,7 @@ function handleOpenPreview({ target }) {
  * ```
  *
  * @fontosdk
+ * @react
  * @category add-on/fontoxml-web-references
  */
 class WebReferencePopover extends Component {
