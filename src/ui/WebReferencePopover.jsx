@@ -53,7 +53,7 @@ class WebReferencePopover extends Component {
 	renderReference = ({ openPreview, reference }) => {
 		return (
 			<PopoverBody>
-				<Text>{t('Hyperlink to:')}</Text>
+				<Text colorName="text-muted-color">{t('Hyperlink to:')}</Text>
 				<TextLink label={reference.target} onClick={openPreview} />
 			</PopoverBody>
 		);
