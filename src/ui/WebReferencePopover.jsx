@@ -17,17 +17,17 @@ function handleOpenPreview({ target }) {
  * Use the popover in the family configuration by adding `visualization.popoverComponentName` and
  * `visualization.popoverData`.
  *
- * @example
- * An example on how to use `WebReferencePopover` in the family configuration.
+ * An example on how to use `WebReferencePopover` in the family configuration:
  *
  * ```javascript
- * configureAsInlineLink(sxModule, 'self::xref[@format="html"]', 'hyperlink', undefined, {
+ * configureAsInlineLink(sxModule, 'self::xref[@format="html"]', 'hyperlink', {
  * 	emptyElementPlaceholderText: 'type the link text',
- * 		popoverComponentName: 'WebReferencePopover',
- * 		popoverData: {
- * 			editOperationName: 'dita-web-reference-edit',
- * 			targetQuery: '@href'
- * 		}
+ * 	popoverComponentName: 'WebReferencePopover',
+ * 	popoverData: {
+ * 		editOperationName: 'dita-web-reference-edit',
+ * 		targetQuery: '@href'
+ * 	},
+ * 	referenceQuery: '@href'
  * });
  * ```
  *
