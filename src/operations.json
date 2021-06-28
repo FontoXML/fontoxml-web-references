@@ -4,8 +4,7 @@
 			"modalTitle": "t__Insert hyperlink",
 			"modalPrimaryButtonLabel": "t__Insert"
 		},
-		"steps":
-		{
+		"steps": {
 			"type": "modal/WebReferenceModal"
 		}
 	},
@@ -50,7 +49,9 @@
 			]
 		},
 		"steps": [
-			{ "type": "transform/setWebReferenceOperationNameBasedOnSelection" },
+			{
+				"type": "transform/setWebReferenceOperationNameBasedOnSelection"
+			},
 			{ "type": "operation" }
 		]
 	},
