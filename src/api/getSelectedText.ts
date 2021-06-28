@@ -1,10 +1,10 @@
-import domInfo from 'fontoxml-dom-utils/src/domInfo.js';
-import domRangeQuery from 'fontoxml-dom-utils/src/domRangeQuery.js';
-import domQuery from 'fontoxml-dom-utils/src/domQuery.js';
-import selectionManager from 'fontoxml-selection/src/selectionManager.js';
+import domInfo from 'fontoxml-dom-utils/src/domInfo';
+import domRangeQuery from 'fontoxml-dom-utils/src/domRangeQuery';
+import domQuery from 'fontoxml-dom-utils/src/domQuery';
+import selectionManager from 'fontoxml-selection/src/selectionManager';
 
 // TODO: move this to the public API some day, see also domQuery.getTextContent
-export default function getSelectedText() {
+export default function getSelectedText(): $TSFixMeAny {
 	if (!selectionManager.hasSelection()) {
 		return '';
 	}
@@ -23,7 +23,7 @@ export default function getSelectedText() {
 
 	var textInRange = domRangeQuery
 		.findNodesContainedInRange(range, domInfo.isTextNode)
-		.map(function(textNode) {
+		.map(function (textNode) {
 			return textNode.data;
 		});
 	range.detach();

@@ -1,14 +1,14 @@
-import uiManager from 'fontoxml-modular-ui/src/uiManager.js';
-import addTransform from 'fontoxml-operations/src/addTransform.js';
-import addProtocol from './api/addProtocol.js';
-import getSelectedText from './api/getSelectedText.js';
-import isValidEmail from './api/isValidEmail.js';
-import isValidMailtoUrl from './api/isValidMailtoUrl.js';
-import isValidWebUrl from './api/isValidWebUrl.js';
-import WebReferenceModal from './ui/WebReferenceModal.jsx';
-import WebReferencePopover from './ui/WebReferencePopover.jsx';
+import uiManager from 'fontoxml-modular-ui/src/uiManager';
+import addTransform from 'fontoxml-operations/src/addTransform';
+import addProtocol from './api/addProtocol';
+import getSelectedText from './api/getSelectedText';
+import isValidEmail from './api/isValidEmail';
+import isValidMailtoUrl from './api/isValidMailtoUrl';
+import isValidWebUrl from './api/isValidWebUrl';
+import WebReferenceModal from './ui/WebReferenceModal';
+import WebReferencePopover from './ui/WebReferencePopover';
 
-export default function install() {
+export default function install(): void {
 	addTransform(
 		'setWebReferenceOperationNameBasedOnSelection',
 		function setWebReferenceOperationNameBasedOnSelection(stepData) {
@@ -21,7 +21,10 @@ export default function install() {
 			} else if (isValidEmail(potentialUrl)) {
 				// Valid email adress but no mailto protocol
 				targetUrl = 'mailto:' + potentialUrl;
-			} else if (isValidWebUrl(potentialUrl) && potentialUrl === addProtocol(potentialUrl)) {
+			} else if (
+				isValidWebUrl(potentialUrl) &&
+				potentialUrl === addProtocol(potentialUrl)
+			) {
 				// Valid URL with a protocol
 				targetUrl = potentialUrl;
 			} else {
@@ -48,7 +51,10 @@ export default function install() {
 		}
 	);
 
-	uiManager.registerReactComponent('WebReferenceModal', WebReferenceModal || WebReferenceModal);
+	uiManager.registerReactComponent(
+		'WebReferenceModal',
+		WebReferenceModal || WebReferenceModal
+	);
 	uiManager.registerReactComponent(
 		'WebReferencePopover',
 		WebReferencePopover || WebReferencePopover

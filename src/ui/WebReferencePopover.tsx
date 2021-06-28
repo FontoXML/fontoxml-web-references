@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import { PopoverBody, Text, TextLink } from 'fds/components';
-import FxReferencePopover from 'fontoxml-fx/src/FxReferencePopover.jsx';
-import t from 'fontoxml-localization/src/t.js';
+import FxReferencePopover from 'fontoxml-fx/src/FxReferencePopover';
+import t from 'fontoxml-localization/src/t';
 
 function handleOpenPreview({ target }) {
 	window.open(target);
@@ -46,8 +46,8 @@ class WebReferencePopover extends Component {
 			editOperationName: PropTypes.string,
 			isReadOnly: PropTypes.bool,
 			targetIsPermanentId: PropTypes.bool,
-			targetQuery: PropTypes.string.isRequired
-		}).isRequired
+			targetQuery: PropTypes.string.isRequired,
+		}).isRequired,
 	};
 
 	renderReference = ({ openPreview, reference }) => {

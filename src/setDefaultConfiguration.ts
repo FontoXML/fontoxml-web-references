@@ -1,6 +1,6 @@
-import configurationManager from 'fontoxml-configuration/src/configurationManager.js';
+import configurationManager from 'fontoxml-configuration/src/configurationManager';
 
-export default function() {
+export default function (): void {
 	/**
 	 * Set the regular expression used to check the validity of web references
 	 *
@@ -15,8 +15,10 @@ export default function() {
 	);
 
 	var emailProtocol = 'mailto:',
-		emailUser = "[a-z0-9!#$%&'*+/=?^_`{|}~\\-]+(\\.[a-z0-9!#$%&'*+/=?^_`{|}~\\-]+)*",
-		emailDomain = '([a-z0-9]([a-z0-9-]*[a-z0-9])?\\.)*([a-z0-9]([a-z0-9-]*[a-z0-9]))?';
+		emailUser =
+			"[a-z0-9!#$%&'*+/=?^_`{|}~\\-]+(\\.[a-z0-9!#$%&'*+/=?^_`{|}~\\-]+)*",
+		emailDomain =
+			'([a-z0-9]([a-z0-9-]*[a-z0-9])?\\.)*([a-z0-9]([a-z0-9-]*[a-z0-9]))?';
 
 	/**
 	 * Set the regular expression used to check the validity of e-mail references.
@@ -26,6 +28,9 @@ export default function() {
 	 */
 	configurationManager.setDefault(
 		'web-reference-email-validity-regular-expression',
-		new RegExp('^(' + emailProtocol + emailUser + '@' + emailDomain + ')$', 'i')
+		new RegExp(
+			'^(' + emailProtocol + emailUser + '@' + emailDomain + ')$',
+			'i'
+		)
 	);
 }

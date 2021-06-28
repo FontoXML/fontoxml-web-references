@@ -12,12 +12,12 @@ import {
 	ModalFooter,
 	ModalHeader,
 	TextInput,
-	TextLink
+	TextLink,
 } from 'fds/components';
-import t from 'fontoxml-localization/src/t.js';
+import t from 'fontoxml-localization/src/t';
 
-import addProtocol from '../api/addProtocol.js';
-import isValidUrl from '../api/isValidUrl.js';
+import addProtocol from '../api/addProtocol';
+import isValidUrl from '../api/isValidUrl';
 
 function validateUrl(value) {
 	if (!value || isValidUrl(addProtocol(value))) {
@@ -25,8 +25,10 @@ function validateUrl(value) {
 	}
 
 	return {
-		message: t('Looks like that URL may not work. Maybe try to visit it, just to be sure?'),
-		connotation: 'warning'
+		message: t(
+			'Looks like that URL may not work. Maybe try to visit it, just to be sure?'
+		),
+		connotation: 'warning',
 	};
 }
 
@@ -40,26 +42,28 @@ export default class WebReferenceModal extends Component {
 			modalIcon: PropTypes.string,
 			modalPrimaryButtonLabel: PropTypes.string,
 			modalTitle: PropTypes.string,
-			url: PropTypes.string
+			url: PropTypes.string,
 		}),
-		submitModal: PropTypes.func.isRequired
+		submitModal: PropTypes.func.isRequired,
 	};
 
 	textInputRef = null;
 
 	state = {
 		feedbackByName: {
-			url: null
+			url: null,
 		},
 		valueByName: {
-			url: this.props.data.url || ''
-		}
+			url: this.props.data.url || '',
+		},
 	};
 
 	handleSubmitButtonClick = () =>
-		this.props.submitModal({ url: addProtocol(this.state.valueByName.url) });
+		this.props.submitModal({
+			url: addProtocol(this.state.valueByName.url),
+		});
 
-	handleKeyDown = event => {
+	handleKeyDown = (event) => {
 		switch (event.key) {
 			case 'Escape':
 				event.preventDefault();
@@ -75,7 +79,7 @@ export default class WebReferenceModal extends Component {
 	handleFormChange = ({ feedbackByName, valueByName }) =>
 		this.setState({ feedbackByName, valueByName });
 
-	handleTextInputRef = textInputRef => (this.textInputRef = textInputRef);
+	handleTextInputRef = (textInputRef) => (this.textInputRef = textInputRef);
 
 	handleVisitLinkClick = () => {
 		window.open(addProtocol(this.state.valueByName.url), '_blank');
@@ -84,13 +88,16 @@ export default class WebReferenceModal extends Component {
 	render() {
 		const {
 			cancelModal,
-			data: { modalIcon, modalPrimaryButtonLabel, modalTitle }
+			data: { modalIcon, modalPrimaryButtonLabel, modalTitle },
 		} = this.props;
 		const { feedbackByName, valueByName } = this.state;
 
 		return (
 			<Modal size="s" onKeyDown={this.handleKeyDown}>
-				<ModalHeader icon={modalIcon} title={modalTitle || t('Edit hyperlink')} />
+				<ModalHeader
+					icon={modalIcon}
+					title={modalTitle || t('Edit hyperlink')}
+				/>
 
 				<ModalBody>
 					<Form

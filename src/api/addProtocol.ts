@@ -1,4 +1,4 @@
-export default function addProtocol(url) {
+export default function addProtocol(url: $TSFixMeAny): $TSFixMeAny {
 	url = url || '';
 	var target = url.trim();
 
