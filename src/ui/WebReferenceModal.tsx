@@ -1,6 +1,3 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-
 import {
 	Block,
 	Button,
@@ -14,6 +11,9 @@ import {
 	TextInput,
 	TextLink,
 } from 'fds/components';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+
 import t from 'fontoxml-localization/src/t';
 
 import addProtocol from '../api/addProtocol';
@@ -76,8 +76,9 @@ export default class WebReferenceModal extends Component {
 		}
 	};
 
-	handleFormChange = ({ feedbackByName, valueByName }) =>
+	handleFormChange = ({ feedbackByName, valueByName }) => {
 		this.setState({ feedbackByName, valueByName });
+	};
 
 	handleTextInputRef = (textInputRef) => (this.textInputRef = textInputRef);
 
@@ -117,9 +118,9 @@ export default class WebReferenceModal extends Component {
 								<Block applyCss={textLinkContainerStyles}>
 									<TextLink
 										icon="external-link"
-										isDisabled={!valueByName['url']}
+										isDisabled={!valueByName.url}
 										label={t('Visit')}
-										href={addProtocol(valueByName['url'])}
+										href={addProtocol(valueByName.url)}
 									/>
 								</Block>
 							</Flex>
@@ -131,7 +132,7 @@ export default class WebReferenceModal extends Component {
 					<Button label={t('Cancel')} onClick={cancelModal} />
 
 					<Button
-						isDisabled={!valueByName['url']}
+						isDisabled={!valueByName.url}
 						label={modalPrimaryButtonLabel || t('Apply')}
 						onClick={this.handleSubmitButtonClick}
 						type="primary"

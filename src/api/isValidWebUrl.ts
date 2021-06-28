@@ -1,10 +1,11 @@
 import configurationManager from 'fontoxml-configuration/src/configurationManager';
-let configuredWebReferenceUrlValidityRegExp = configurationManager.get(
+
+const configuredWebReferenceUrlValidityRegExp = configurationManager.get(
 	'web-reference-url-validity-regular-expression'
 );
 
 export default function isValidWebUrl(url: $TSFixMeAny): $TSFixMeAny {
-	var splittedUrl = url.split('://');
+	const splittedUrl = url.split('://');
 
 	if (splittedUrl.length !== 2) {
 		return false;

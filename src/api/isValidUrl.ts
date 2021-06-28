@@ -1,8 +1,9 @@
 import configurationManager from 'fontoxml-configuration/src/configurationManager';
-let configuredWebReferenceUrlValidityRegExp = configurationManager.get(
+
+const configuredWebReferenceUrlValidityRegExp = configurationManager.get(
 	'web-reference-url-validity-regular-expression'
 );
-let configuredWebReferenceEmailValidityRegExp = configurationManager.get(
+const configuredWebReferenceEmailValidityRegExp = configurationManager.get(
 	'web-reference-email-validity-regular-expression'
 );
 
@@ -11,7 +12,7 @@ export default function (url: $TSFixMeAny): $TSFixMeAny {
 		return configuredWebReferenceEmailValidityRegExp.test(url);
 	}
 
-	var splittedUrl = url.split('://');
+	const splittedUrl = url.split('://');
 
 	if (splittedUrl.length !== 2) {
 		return false;

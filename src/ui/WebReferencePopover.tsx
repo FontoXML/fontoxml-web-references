@@ -1,7 +1,7 @@
+import { PopoverBody, Text, TextLink } from 'fds/components';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { PopoverBody, Text, TextLink } from 'fds/components';
 import FxReferencePopover from 'fontoxml-fx/src/FxReferencePopover';
 import t from 'fontoxml-localization/src/t';
 

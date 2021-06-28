@@ -1,5 +1,6 @@
 import uiManager from 'fontoxml-modular-ui/src/uiManager';
 import addTransform from 'fontoxml-operations/src/addTransform';
+
 import addProtocol from './api/addProtocol';
 import getSelectedText from './api/getSelectedText';
 import isValidEmail from './api/isValidEmail';
@@ -12,15 +13,15 @@ export default function install(): void {
 	addTransform(
 		'setWebReferenceOperationNameBasedOnSelection',
 		function setWebReferenceOperationNameBasedOnSelection(stepData) {
-			var potentialUrl = getSelectedText().trim();
+			const potentialUrl = getSelectedText().trim();
 
-			var targetUrl = null;
+			let targetUrl = null;
 			if (isValidMailtoUrl(potentialUrl)) {
 				// Mailto link with protocol and everything
 				targetUrl = potentialUrl;
 			} else if (isValidEmail(potentialUrl)) {
 				// Valid email adress but no mailto protocol
-				targetUrl = 'mailto:' + potentialUrl;
+				targetUrl = `mailto:${potentialUrl}`;
 			} else if (
 				isValidWebUrl(potentialUrl) &&
 				potentialUrl === addProtocol(potentialUrl)
@@ -28,7 +29,7 @@ export default function install(): void {
 				// Valid URL with a protocol
 				targetUrl = potentialUrl;
 			} else {
-				var intermediateUrl = addProtocol(potentialUrl);
+				const intermediateUrl = addProtocol(potentialUrl);
 
 				if (
 					isValidWebUrl(intermediateUrl) &&

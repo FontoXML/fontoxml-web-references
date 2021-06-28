@@ -1,5 +1,6 @@
 import configurationManager from 'fontoxml-configuration/src/configurationManager';
-let configuredWebReferenceEmailValidityRegExp = configurationManager.get(
+
+const configuredWebReferenceEmailValidityRegExp = configurationManager.get(
 	'web-reference-email-validity-regular-expression'
 );
 
