@@ -11,7 +11,6 @@ import {
 	TextInput,
 	TextLink,
 } from 'fds/components';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import t from 'fontoxml-localization/src/t';
@@ -35,18 +34,18 @@ function validateUrl(value) {
 // To align the TextLink with the TextInput, uses the same padding as defined in TextInput.
 const textLinkContainerStyles = { padding: '.1875rem 0' };
 
-export default class WebReferenceModal extends Component {
-	static propTypes = {
-		cancelModal: PropTypes.func.isRequired,
-		data: PropTypes.shape({
-			modalIcon: PropTypes.string,
-			modalPrimaryButtonLabel: PropTypes.string,
-			modalTitle: PropTypes.string,
-			url: PropTypes.string,
-		}),
-		submitModal: PropTypes.func.isRequired,
+type Props = {
+	cancelModal(...args: unknown[]): unknown;
+	data?: {
+		modalIcon?: string;
+		modalPrimaryButtonLabel?: string;
+		modalTitle?: string;
+		url?: string;
 	};
+	submitModal(...args: unknown[]): unknown;
+};
 
+export default class WebReferenceModal extends Component<Props> {
 	textInputRef = null;
 
 	state = {

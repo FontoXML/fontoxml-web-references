@@ -1,5 +1,4 @@
 import { PopoverBody, Text, TextLink } from 'fds/components';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import FxReferencePopover from 'fontoxml-fx/src/FxReferencePopover';
@@ -8,6 +7,17 @@ import t from 'fontoxml-localization/src/t';
 function handleOpenPreview({ target }) {
 	window.open(target);
 }
+
+type Props = {
+	data: {
+		contextNodeId: string;
+		deleteOperationName?: string;
+		editOperationName?: string;
+		isReadOnly?: boolean;
+		targetIsPermanentId?: boolean;
+		targetQuery: string;
+	};
+};
 
 /**
  * A popover used for web references.
@@ -35,21 +45,7 @@ function handleOpenPreview({ target }) {
  * @react
  * @category add-on/fontoxml-web-references
  */
-class WebReferencePopover extends Component {
-	static propTypes = {
-		/**
-		 * @type {WebReferencePopover~data}
-		 */
-		data: PropTypes.shape({
-			contextNodeId: PropTypes.string.isRequired,
-			deleteOperationName: PropTypes.string,
-			editOperationName: PropTypes.string,
-			isReadOnly: PropTypes.bool,
-			targetIsPermanentId: PropTypes.bool,
-			targetQuery: PropTypes.string.isRequired,
-		}).isRequired,
-	};
-
+class WebReferencePopover extends Component<Props> {
 	renderReference = ({ openPreview, reference }) => {
 		return (
 			<PopoverBody>
