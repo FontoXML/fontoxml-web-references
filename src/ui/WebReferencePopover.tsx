@@ -9,6 +9,9 @@ function handleOpenPreview({ target }) {
 }
 
 type Props = {
+	/**
+	 * @type {WebReferencePopover~data}
+	 */
 	data: {
 		contextNodeId: string;
 		deleteOperationName?: string;
