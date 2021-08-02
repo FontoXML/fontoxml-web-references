@@ -13,6 +13,7 @@ import {
 } from 'fds/components';
 import React, { Component } from 'react';
 
+import type { ModalProps } from 'fontoxml-fx/src/types';
 import t from 'fontoxml-localization/src/t';
 
 import addProtocol from '../api/addProtocol';
@@ -34,18 +35,14 @@ function validateUrl(value) {
 // To align the TextLink with the TextInput, uses the same padding as defined in TextInput.
 const textLinkContainerStyles = { padding: '.1875rem 0' };
 
-type Props = {
-	cancelModal(...args: unknown[]): unknown;
-	data?: {
+export default class WebReferenceModal extends Component<
+	ModalProps<{
 		modalIcon?: string;
 		modalPrimaryButtonLabel?: string;
 		modalTitle?: string;
 		url?: string;
-	};
-	submitModal(...args: unknown[]): unknown;
-};
-
-export default class WebReferenceModal extends Component<Props> {
+	}>
+> {
 	textInputRef = null;
 
 	state = {
@@ -57,10 +54,11 @@ export default class WebReferenceModal extends Component<Props> {
 		},
 	};
 
-	handleSubmitButtonClick = () =>
+	handleSubmitButtonClick = () => {
 		this.props.submitModal({
 			url: addProtocol(this.state.valueByName.url),
 		});
+	};
 
 	handleKeyDown = (event) => {
 		switch (event.key) {
