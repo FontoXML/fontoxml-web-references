@@ -1,5 +1,6 @@
 ---
 category: add-on/fontoxml-web-references
+fontosdk: true
 ---
 
 # Web references library
