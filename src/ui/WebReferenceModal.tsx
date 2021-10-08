@@ -105,7 +105,7 @@ export default class WebReferenceModal extends Component<
 						valueByName={valueByName}
 					>
 						<FormRow label={t('Web address (URL)')}>
-							<Flex alignItems="flex-start" spaceSize="m">
+							<Flex alignItems="flex-start" spaceSize="l">
 								<TextInput
 									name="url"
 									ref={this.handleTextInputRef}
