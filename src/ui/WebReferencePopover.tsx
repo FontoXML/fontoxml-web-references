@@ -11,13 +11,33 @@ function handleOpenPreview({ target }) {
 type Props = {
 	/**
 	 * @type {WebReferencePopover~data}
+	 *
+	 * @fontosdk
 	 */
 	data: {
+		/**
+		 * @fontosdk
+		 */
 		contextNodeId: string;
+		/**
+		 * @fontosdk
+		 */
 		deleteOperationName?: string;
+		/**
+		 * @fontosdk
+		 */
 		editOperationName?: string;
+		/**
+		 * @fontosdk
+		 */
 		isReadOnly?: boolean;
+		/**
+		 * @fontosdk
+		 */
 		targetIsPermanentId?: boolean;
+		/**
+		 * @fontosdk
+		 */
 		targetQuery: string;
 	};
 };
