@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 
 import FxReferencePopover from 'fontoxml-fx/src/FxReferencePopover';
 import t from 'fontoxml-localization/src/t';
+import type { OperationName } from 'fontoxml-operations/src/types';
+import type { XPathQuery } from 'fontoxml-selectors/src/types';
 
 function handleOpenPreview({ target }) {
 	window.open(target);
@@ -16,29 +18,43 @@ type Props = {
 	 */
 	data: {
 		/**
+		 * A property that comes from the popover method
+		 *   self, contains the node ID of the node that is configured. Does not need to be added in the popoverData.
+		 *
 		 * @fontosdk
 		 */
 		contextNodeId: string;
 		/**
+		 * The operation for removing the
+		 *   reference. Is by default {@link reference-delete}.
+		 *
 		 * @fontosdk
 		 */
-		deleteOperationName?: string;
+		deleteOperationName?: OperationName;
 		/**
+		 * Only when an editOperationName is used, a edit
+		 *   button is made. The edit operation should provide a way to edit the reference.
+		 *
 		 * @fontosdk
 		 */
-		editOperationName?: string;
+		editOperationName?: OperationName;
 		/**
 		 * @fontosdk
 		 */
 		isReadOnly?: boolean;
 		/**
+		 * Determines wether the reference contains
+		 *
 		 * @fontosdk
 		 */
 		targetIsPermanentId?: boolean;
 		/**
+		 * Determines the reference content with a xpath
+		 *   query, starting from the context node. Often this is just an attribute, for example `@href`.
+		 *
 		 * @fontosdk
 		 */
-		targetQuery: string;
+		targetQuery: XPathQuery;
 	};
 };
 
