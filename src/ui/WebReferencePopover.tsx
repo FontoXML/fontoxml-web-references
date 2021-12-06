@@ -12,28 +12,29 @@ function handleOpenPreview({ target }) {
 
 type Props = {
 	/**
-	 * @type {WebReferencePopover~data}
-	 *
 	 * @fontosdk
 	 */
 	data: {
 		/**
-		 * A property that comes from the popover method
-		 *   self, contains the node ID of the node that is configured. Does not need to be added in the popoverData.
+		 * @remarks
+		 * A property that comes from the popover method self, contains the node ID of the
+		 * node that is configured. Does not need to be added in the popoverData.
 		 *
 		 * @fontosdk
 		 */
 		contextNodeId: string;
 		/**
-		 * The operation for removing the
-		 *   reference. Is by default {@link reference-delete}.
+		 * @remarks
+		 * The operation for removing the reference. Is by default {@link
+		 * reference-delete}.
 		 *
 		 * @fontosdk
 		 */
 		deleteOperationName?: OperationName;
 		/**
-		 * Only when an editOperationName is used, a edit
-		 *   button is made. The edit operation should provide a way to edit the reference.
+		 * @remarks
+		 * Only when an editOperationName is used, a edit button is made. The edit
+		 * operation should provide a way to edit the reference.
 		 *
 		 * @fontosdk
 		 */
@@ -43,14 +44,16 @@ type Props = {
 		 */
 		isReadOnly?: boolean;
 		/**
+		 * @remarks
 		 * Determines wether the reference contains
 		 *
 		 * @fontosdk
 		 */
 		targetIsPermanentId?: boolean;
 		/**
-		 * Determines the reference content with a xpath
-		 *   query, starting from the context node. Often this is just an attribute, for example `@href`.
+		 * @remarks
+		 * Determines the reference content with a xpath query, starting from the context
+		 * node. Often this is just an attribute, for example `@href`.
 		 *
 		 * @fontosdk
 		 */
@@ -59,12 +62,13 @@ type Props = {
 };
 
 /**
+ * @remarks
  * A popover used for web references.
  *
  * Is registered under the name `WebReferencePopover`.
  *
- * Use the popover in the family configuration by adding `visualization.popoverComponentName` and
- * `visualization.popoverData`.
+ * Use the popover in the family configuration by adding
+ * `visualization.popoverComponentName` and `visualization.popoverData`.
  *
  * An example on how to use `WebReferencePopover` in the family configuration:
  *
@@ -81,8 +85,6 @@ type Props = {
  * ```
  *
  * @fontosdk
- * @react
- * @category add-on/fontoxml-web-references
  */
 class WebReferencePopover extends Component<Props> {
 	renderReference = ({ openPreview, reference }) => {
@@ -108,22 +110,8 @@ class WebReferencePopover extends Component<Props> {
 export default WebReferencePopover;
 
 /**
+ * @remarks
  * The popoverData that should be provided in the family configuration.
  *
- * @typedef   {Object}  data
- * @memberof  WebReferencePopover
- * @inner
- *
- * @property  {NodeId}     contextNodeId               A property that comes from the popover method
- *   self, contains the node ID of the node that is configured. Does not need to be added in the popoverData.
- * @property  {string}     [deleteOperationName='reference-delete'] The operation for removing the
- *   reference. Is by default {@link reference-delete}.
- * @property  {boolean}    [editOperationName]         Only when an editOperationName is used, a edit
- *   button is made. The edit operation should provide a way to edit the reference.
- * @property  {XPathQuery} targetQuery                 Determines the reference content with a xpath
- *   query, starting from the context node. Often this is just an attribute, for example `@href`.
- * @property  {boolean}    [targetIsPermanentId=false] Determines wether the reference contains
- *   permanentId's.
- *
- * @fontosdk  members
+ * @fontosdk
  */
