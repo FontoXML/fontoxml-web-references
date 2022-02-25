@@ -1,6 +1,6 @@
 import configurationManager from 'fontoxml-configuration/src/configurationManager';
 
-export default function (): void {
+export default function setDefaultConfiguration(): void {
 	configurationManager.setDefault(
 		'web-reference-url-validity-regular-expression',
 		/^(https?|ftp):\/\/[^\s]+$/

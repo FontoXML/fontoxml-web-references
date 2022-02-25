@@ -7,7 +7,7 @@ const configuredWebReferenceEmailValidityRegExp = configurationManager.get(
 	'web-reference-email-validity-regular-expression'
 );
 
-export default function (url: $TSFixMeAny): $TSFixMeAny {
+export default function isValidUrl(url: $TSFixMeAny): $TSFixMeAny {
 	if (url.startsWith('mailto:')) {
 		return configuredWebReferenceEmailValidityRegExp.test(url);
 	}
