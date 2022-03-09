@@ -7,7 +7,7 @@ import isValidEmail from './api/isValidEmail';
 import isValidMailtoUrl from './api/isValidMailtoUrl';
 import isValidWebUrl from './api/isValidWebUrl';
 import WebReferenceModal from './ui/WebReferenceModal';
-import WebReferencePopover from './ui/WebReferencePopover';
+import WebReferencePopover from './WebReferencePopover';
 
 export default function install(): void {
 	addTransform(
@@ -52,12 +52,9 @@ export default function install(): void {
 		}
 	);
 
-	uiManager.registerReactComponent(
-		'WebReferenceModal',
-		WebReferenceModal || WebReferenceModal
-	);
+	uiManager.registerReactComponent('WebReferenceModal', WebReferenceModal);
 	uiManager.registerReactComponent(
 		'WebReferencePopover',
-		WebReferencePopover || WebReferencePopover
+		WebReferencePopover
 	);
 }
