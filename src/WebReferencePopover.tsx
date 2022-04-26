@@ -10,6 +10,9 @@ function handleOpenPreview({ target }) {
 	window.open(target);
 }
 
+/**
+ * @fontosdk
+ */
 type Props = {
 	/**
 	 * @fontosdk
