@@ -1,5 +1,6 @@
+import blueprintQuery from 'fontoxml-blueprints/src/blueprintQuery';
+import readOnlyBlueprint from 'fontoxml-blueprints/src/readOnlyBlueprint';
 import domInfo from 'fontoxml-dom-utils/src/domInfo';
-import domQuery from 'fontoxml-dom-utils/src/domQuery';
 import domRangeQuery from 'fontoxml-dom-utils/src/domRangeQuery';
 import selectionManager from 'fontoxml-selection/src/selectionManager';
 
@@ -17,7 +18,9 @@ export default function getSelectedText(): $TSFixMeAny {
 		return startContainer.data.substring(startOffset, endOffset);
 	}
 
-	const range = domQuery.getDocumentNode(startContainer).createRange();
+	const range = blueprintQuery
+		.getDocumentNode(readOnlyBlueprint, startContainer)
+		.createRange();
 	range.setStart(startContainer, startOffset);
 	range.setEnd(endContainer, endOffset);
 
