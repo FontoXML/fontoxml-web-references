@@ -73,8 +73,11 @@ export default class WebReferenceModal extends Component<
 		}
 	};
 
-	handleFormChange = ({ feedbackByName, valueByName }) => {
-		this.setState({ feedbackByName, valueByName });
+	handleFormFieldChange = ({ name, feedback, value }) => {
+		this.setState({
+			feedbackByName: { [name]: feedback },
+			valueByName: { [name]: value },
+		});
 	};
 
 	handleTextInputRef = (textInputRef) => (this.textInputRef = textInputRef);
@@ -101,7 +104,7 @@ export default class WebReferenceModal extends Component<
 					<Form
 						feedbackByName={feedbackByName}
 						labelPosition="before"
-						onChange={this.handleFormChange}
+						onFieldChange={this.handleFormFieldChange}
 						valueByName={valueByName}
 					>
 						<FormRow label={t('Web address (URL)')}>
