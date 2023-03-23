@@ -11,7 +11,7 @@ import {
 	TextInput,
 	TextLink,
 } from 'fds/components';
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import type { ModalProps } from 'fontoxml-fx/src/types';
 import t from 'fontoxml-localization/src/t';
@@ -19,7 +19,7 @@ import t from 'fontoxml-localization/src/t';
 import addProtocol from '../api/addProtocol';
 import isValidUrl from '../api/isValidUrl';
 
-function validateUrl(value) {
+function validateUrl(value: string) {
 	if (!value || isValidUrl(addProtocol(value))) {
 		return null;
 	}
@@ -35,7 +35,7 @@ function validateUrl(value) {
 // To align the TextLink with the TextInput, uses the same padding as defined in TextInput.
 const textLinkContainerStyles = { padding: '.1875rem 0' };
 
-export default class WebReferenceModal extends Component<
+export default class WebReferenceModal extends React.Component<
 	ModalProps<{
 		modalIcon?: string;
 		modalPrimaryButtonLabel?: string;
@@ -43,9 +43,9 @@ export default class WebReferenceModal extends Component<
 		url?: string;
 	}>
 > {
-	textInputRef = null;
+	private textInputRef: HTMLElement | null = null;
 
-	state = {
+	public override state = {
 		feedbackByName: {
 			url: null,
 		},
@@ -54,13 +54,13 @@ export default class WebReferenceModal extends Component<
 		},
 	};
 
-	handleSubmitButtonClick = () => {
+	public handleSubmitButtonClick = (): void => {
 		this.props.submitModal({
 			url: addProtocol(this.state.valueByName.url),
 		});
 	};
 
-	handleKeyDown = (event) => {
+	private readonly handleKeyDown = (event: React.KeyboardEvent) => {
 		switch (event.key) {
 			case 'Escape':
 				event.preventDefault();
@@ -73,20 +73,17 @@ export default class WebReferenceModal extends Component<
 		}
 	};
 
-	handleFormFieldChange = ({ name, feedback, value }) => {
+	private readonly handleFormFieldChange = ({ name, feedback, value }) => {
 		this.setState({
 			feedbackByName: { [name]: feedback },
 			valueByName: { [name]: value },
 		});
 	};
 
-	handleTextInputRef = (textInputRef) => (this.textInputRef = textInputRef);
+	private readonly handleTextInputRef = (textInputRef: HTMLElement) =>
+		(this.textInputRef = textInputRef);
 
-	handleVisitLinkClick = () => {
-		window.open(addProtocol(this.state.valueByName.url), '_blank');
-	};
-
-	render() {
+	public override render(): JSX.Element {
 		const {
 			cancelModal,
 			data: { modalIcon, modalPrimaryButtonLabel, modalTitle },
@@ -142,7 +139,7 @@ export default class WebReferenceModal extends Component<
 		);
 	}
 
-	componentDidMount() {
+	public override componentDidMount(): void {
 		this.textInputRef.focus();
 	}
 }

@@ -1,5 +1,5 @@
 import { PopoverBody, Text, TextLink } from 'fds/components';
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import FxReferencePopover from 'fontoxml-fx/src/FxReferencePopover';
 import t from 'fontoxml-localization/src/t';
@@ -89,8 +89,11 @@ type Props = {
  *
  * @fontosdk
  */
-class WebReferencePopover extends Component<Props> {
-	renderReference = ({ openPreview, reference }) => {
+class WebReferencePopover extends React.Component<Props> {
+	private readonly renderReference = ({
+		openPreview,
+		reference,
+	}): JSX.Element => {
 		return (
 			<PopoverBody>
 				<Text colorName="text-muted-color">{t('Hyperlink to:')}</Text>
@@ -99,7 +102,7 @@ class WebReferencePopover extends Component<Props> {
 		);
 	};
 
-	render() {
+	public override render(): JSX.Element {
 		return (
 			<FxReferencePopover
 				{...this.props}
@@ -111,10 +114,3 @@ class WebReferencePopover extends Component<Props> {
 }
 
 export default WebReferencePopover;
-
-/**
- * @remarks
- * The popoverData that should be provided in the family configuration.
- *
- * @fontosdk
- */
