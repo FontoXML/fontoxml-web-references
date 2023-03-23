@@ -1,6 +1,10 @@
-import { PopoverBody, Text, TextLink } from 'fds/components';
 import * as React from 'react';
 
+import {
+	PopoverBody,
+	Text,
+	TextLink,
+} from 'fontoxml-design-system/src/components';
 import FxReferencePopover from 'fontoxml-fx/src/FxReferencePopover';
 import t from 'fontoxml-localization/src/t';
 import type { OperationName } from 'fontoxml-operations/src/types';
