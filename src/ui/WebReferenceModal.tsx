@@ -13,6 +13,10 @@ import {
 	TextInput,
 	TextLink,
 } from 'fontoxml-design-system/src/components';
+import type {
+	FdsFormFeedbackByName,
+	FdsFormValueByName,
+} from 'fontoxml-design-system/src/types';
 import type { ModalProps } from 'fontoxml-fx/src/types';
 import t from 'fontoxml-localization/src/t';
 
@@ -35,111 +39,105 @@ function validateUrl(value: string) {
 // To align the TextLink with the TextInput, uses the same padding as defined in TextInput.
 const textLinkContainerStyles = { padding: '.1875rem 0' };
 
-export default class WebReferenceModal extends React.Component<
+const WebReferenceModal: React.FC<
 	ModalProps<{
 		modalIcon?: string;
 		modalPrimaryButtonLabel?: string;
 		modalTitle?: string;
 		url?: string;
 	}>
-> {
-	private textInputRef: HTMLElement | null = null;
+> = ({
+	cancelModal,
+	data: { modalIcon, modalPrimaryButtonLabel, modalTitle, url },
+	submitModal,
+}) => {
+	const [feedbackByName, setFeedbackByName] =
+		React.useState<FdsFormFeedbackByName>({});
+	const [valueByName, setValueByName] = React.useState<FdsFormValueByName>({
+		url: url || '',
+	});
 
-	public override state = {
-		feedbackByName: {
-			url: null,
-		},
-		valueByName: {
-			url: this.props.data.url || '',
-		},
-	};
-
-	public handleSubmitButtonClick = (): void => {
-		this.props.submitModal({
-			url: addProtocol(this.state.valueByName.url),
+	const handleSubmitButtonClick = (): void => {
+		submitModal({
+			url: addProtocol(valueByName['url'] as string),
 		});
 	};
 
-	private readonly handleKeyDown = (event: React.KeyboardEvent) => {
+	const handleKeyDown = (event: React.KeyboardEvent) => {
 		switch (event.key) {
 			case 'Escape':
 				event.preventDefault();
-				this.props.cancelModal();
+				cancelModal();
 				break;
 			case 'Enter':
 				event.preventDefault();
-				this.handleSubmitButtonClick();
+				handleSubmitButtonClick();
 				break;
 		}
 	};
 
-	private readonly handleFormFieldChange = ({ name, feedback, value }) => {
-		this.setState({
-			feedbackByName: { [name]: feedback },
-			valueByName: { [name]: value },
-		});
-	};
+	const handleFormFieldChange = React.useCallback(
+		({ name, feedback, value }) => {
+			setFeedbackByName({ [name]: feedback });
+			setValueByName({ [name]: value });
+		},
+		[]
+	);
 
-	private readonly handleTextInputRef = (textInputRef: HTMLElement) =>
-		(this.textInputRef = textInputRef);
+	const textInputRef = React.useRef<HTMLElement>(null);
+	React.useEffect(() => {
+		if (textInputRef.current) {
+			textInputRef.current.focus();
+		}
+	}, []);
 
-	public override render(): JSX.Element {
-		const {
-			cancelModal,
-			data: { modalIcon, modalPrimaryButtonLabel, modalTitle },
-		} = this.props;
-		const { feedbackByName, valueByName } = this.state;
+	return (
+		<Modal size="s" onKeyDown={handleKeyDown}>
+			<ModalHeader
+				icon={modalIcon}
+				title={modalTitle || t('Edit hyperlink')}
+			/>
 
-		return (
-			<Modal size="s" onKeyDown={this.handleKeyDown}>
-				<ModalHeader
-					icon={modalIcon}
-					title={modalTitle || t('Edit hyperlink')}
-				/>
+			<ModalBody>
+				<Form
+					feedbackByName={feedbackByName}
+					labelPosition="before"
+					onFieldChange={handleFormFieldChange}
+					valueByName={valueByName}
+				>
+					<FormRow label={t('Web address (URL)')}>
+						<Flex alignItems="center" spaceSize="l">
+							<TextInput
+								name="url"
+								ref={textInputRef}
+								validate={validateUrl}
+							/>
 
-				<ModalBody>
-					<Form
-						feedbackByName={feedbackByName}
-						labelPosition="before"
-						onFieldChange={this.handleFormFieldChange}
-						valueByName={valueByName}
-					>
-						<FormRow label={t('Web address (URL)')}>
-							<Flex alignItems="center" spaceSize="l">
-								<TextInput
-									name="url"
-									ref={this.handleTextInputRef}
-									validate={validateUrl}
+							<Block applyCss={textLinkContainerStyles}>
+								<TextLink
+									icon="external-link"
+									isDisabled={!valueByName['url']}
+									label={t('Visit')}
+									href={addProtocol(valueByName['url'])}
 								/>
+							</Block>
+						</Flex>
+					</FormRow>
+				</Form>
+			</ModalBody>
 
-								<Block applyCss={textLinkContainerStyles}>
-									<TextLink
-										icon="external-link"
-										isDisabled={!valueByName.url}
-										label={t('Visit')}
-										href={addProtocol(valueByName.url)}
-									/>
-								</Block>
-							</Flex>
-						</FormRow>
-					</Form>
-				</ModalBody>
+			<ModalFooter>
+				<Button label={t('Cancel')} onClick={cancelModal} />
 
-				<ModalFooter>
-					<Button label={t('Cancel')} onClick={cancelModal} />
+				<Button
+					isDisabled={!valueByName['url']}
+					label={modalPrimaryButtonLabel || t('Apply')}
+					onClick={handleSubmitButtonClick}
+					type="primary"
+				/>
+			</ModalFooter>
+		</Modal>
+	);
+};
 
-					<Button
-						isDisabled={!valueByName.url}
-						label={modalPrimaryButtonLabel || t('Apply')}
-						onClick={this.handleSubmitButtonClick}
-						type="primary"
-					/>
-				</ModalFooter>
-			</Modal>
-		);
-	}
-
-	public override componentDidMount(): void {
-		this.textInputRef.focus();
-	}
-}
+export default WebReferenceModal;
