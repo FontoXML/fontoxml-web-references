@@ -93,28 +93,28 @@ type Props = {
  *
  * @fontosdk
  */
-class WebReferencePopover extends React.Component<Props> {
-	private readonly renderReference = ({
-		openPreview,
-		reference,
-	}): JSX.Element => {
-		return (
-			<PopoverBody>
-				<Text colorName="text-muted-color">{t('Hyperlink to:')}</Text>
-				<TextLink label={reference.target} onClick={openPreview} />
-			</PopoverBody>
-		);
-	};
+const WebReferencePopover: React.FC<Props> = (props) => {
+	const renderReference = React.useCallback(
+		({ openPreview, reference }): JSX.Element => {
+			return (
+				<PopoverBody>
+					<Text colorName="text-muted-color">
+						{t('Hyperlink to:')}
+					</Text>
+					<TextLink label={reference.target} onClick={openPreview} />
+				</PopoverBody>
+			);
+		},
+		[]
+	);
 
-	public override render(): JSX.Element {
-		return (
-			<FxReferencePopover
-				{...this.props}
-				renderReference={this.renderReference}
-				openPreview={handleOpenPreview}
-			/>
-		);
-	}
-}
+	return (
+		<FxReferencePopover
+			{...props}
+			renderReference={renderReference}
+			openPreview={handleOpenPreview}
+		/>
+	);
+};
 
 export default WebReferencePopover;
