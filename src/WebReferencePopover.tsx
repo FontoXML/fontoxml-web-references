@@ -1,4 +1,5 @@
-import * as React from 'react';
+import type { FC } from 'react';
+import { useCallback } from 'react';
 
 import {
 	PopoverBody,
@@ -93,8 +94,8 @@ type Props = {
  *
  * @fontosdk
  */
-const WebReferencePopover: React.FC<Props> = (props) => {
-	const renderReference = React.useCallback(
+const WebReferencePopover: FC<Props> = (props) => {
+	const renderReference = useCallback(
 		({ openPreview, reference }): JSX.Element => {
 			return (
 				<PopoverBody>

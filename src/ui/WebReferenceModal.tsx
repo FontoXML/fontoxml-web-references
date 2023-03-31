@@ -1,4 +1,5 @@
-import * as React from 'react';
+import type { FC, KeyboardEvent } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import {
 	Block,
@@ -39,7 +40,7 @@ function validateUrl(value: string) {
 // To align the TextLink with the TextInput, uses the same padding as defined in TextInput.
 const textLinkContainerStyles = { padding: '.1875rem 0' };
 
-const WebReferenceModal: React.FC<
+const WebReferenceModal: FC<
 	ModalProps<{
 		modalIcon?: string;
 		modalPrimaryButtonLabel?: string;
@@ -51,9 +52,10 @@ const WebReferenceModal: React.FC<
 	data: { modalIcon, modalPrimaryButtonLabel, modalTitle, url },
 	submitModal,
 }) => {
-	const [feedbackByName, setFeedbackByName] =
-		React.useState<FdsFormFeedbackByName>({});
-	const [valueByName, setValueByName] = React.useState<FdsFormValueByName>({
+	const [feedbackByName, setFeedbackByName] = useState<FdsFormFeedbackByName>(
+		{}
+	);
+	const [valueByName, setValueByName] = useState<FdsFormValueByName>({
 		url: url || '',
 	});
 
@@ -63,7 +65,7 @@ const WebReferenceModal: React.FC<
 		});
 	};
 
-	const handleKeyDown = (event: React.KeyboardEvent) => {
+	const handleKeyDown = (event: KeyboardEvent) => {
 		switch (event.key) {
 			case 'Escape':
 				event.preventDefault();
@@ -76,16 +78,13 @@ const WebReferenceModal: React.FC<
 		}
 	};
 
-	const handleFormFieldChange = React.useCallback(
-		({ name, feedback, value }) => {
-			setFeedbackByName({ [name]: feedback });
-			setValueByName({ [name]: value });
-		},
-		[]
-	);
+	const handleFormFieldChange = useCallback(({ name, feedback, value }) => {
+		setFeedbackByName({ [name]: feedback });
+		setValueByName({ [name]: value });
+	}, []);
 
-	const textInputRef = React.useRef<HTMLElement>(null);
-	React.useEffect(() => {
+	const textInputRef = useRef<HTMLElement>(null);
+	useEffect(() => {
 		if (textInputRef.current) {
 			textInputRef.current.focus();
 		}
