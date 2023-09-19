@@ -73,6 +73,9 @@ const WebReferenceModal: FC<
 				break;
 			case 'Enter':
 				event.preventDefault();
+				if (!valueByName['url']) {
+					break;
+				}
 				handleSubmitButtonClick();
 				break;
 		}
