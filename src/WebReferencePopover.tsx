@@ -18,7 +18,6 @@ import t from 'fontoxml-localization/src/t';
 import type { OperationName } from 'fontoxml-operations/src/types';
 import ReturnTypes from 'fontoxml-selectors/src/ReturnTypes';
 import type { XPathQuery, XQExpression } from 'fontoxml-selectors/src/types';
-import xq, { ensureXQExpression } from 'fontoxml-selectors/src/xq';
 
 /**
  * @fontosdk
@@ -71,18 +70,6 @@ type Props = {
 		 * @fontosdk
 		 */
 		targetQuery: XPathQuery | XQExpression;
-		/**
-		 * @remarks
-		 * Determines whether the result of the targetQuery should be resolved
-		 * through the reference pipeline before it is displayed.
-		 *
-		 * Defaults to false
-		 *
-		 * @fontosdk
-		 *
-		 * @deprecated the reference pipeline will be removed in 8.10
-		 */
-		targetIsPermanentId?: boolean;
 	};
 };
 
@@ -103,7 +90,7 @@ type Props = {
  *         editOperationName: 'dita-web-reference-edit',
  *         targetQuery: xq`@href`
  *     },
- * 	   referenceQuery: xq`@href`,
+ *     referenceQuery: xq`@href`,
  * });
  * ```
  *
@@ -115,13 +102,7 @@ const WebReferencePopover: FC<Props> = ({ data }) => {
 		[data.contextNodeId]
 	);
 
-	const targetQuery = data.targetIsPermanentId
-		? xq`${ensureXQExpression(
-				data.targetQuery
-		  )} ! fonto:resolve-permanent-id(.)?value?target`
-		: data.targetQuery;
-
-	const target = useXPath<string>(targetQuery, contextNode, {
+	const target = useXPath<string>(data.targetQuery, contextNode, {
 		expectedResultType: ReturnTypes.STRING,
 	});
 
