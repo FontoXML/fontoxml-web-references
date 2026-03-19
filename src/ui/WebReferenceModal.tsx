@@ -61,7 +61,7 @@ const WebReferenceModal: FC<
 
 	const handleSubmitButtonClick = (): void => {
 		submitModal({
-			url: addProtocol(valueByName['url'] as string),
+			url: addProtocol(valueByName.url as string),
 		});
 	};
 
@@ -73,7 +73,7 @@ const WebReferenceModal: FC<
 				break;
 			case 'Enter':
 				event.preventDefault();
-				if (!valueByName['url']) {
+				if (!valueByName.url) {
 					break;
 				}
 				handleSubmitButtonClick();
@@ -118,9 +118,9 @@ const WebReferenceModal: FC<
 							<Block applyCss={textLinkContainerStyles}>
 								<TextLink
 									icon="external-link"
-									isDisabled={!valueByName['url']}
+									isDisabled={!valueByName.url}
 									label={t('Visit')}
-									href={addProtocol(valueByName['url'])}
+									href={addProtocol(valueByName.url)}
 								/>
 							</Block>
 						</Flex>
@@ -132,7 +132,7 @@ const WebReferenceModal: FC<
 				<Button label={t('Cancel')} onClick={cancelModal} />
 
 				<Button
-					isDisabled={!valueByName['url']}
+					isDisabled={!valueByName.url}
 					label={modalPrimaryButtonLabel || t('Apply')}
 					onClick={handleSubmitButtonClick}
 					type="primary"
